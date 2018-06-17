@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.media.MediaPlayer?>
 
-
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.geometry.Insets?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" style="-fx-background-color: #2EFEF7;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu text="File">
                     <items>
-                        <MenuItem fx:id="newFile" text="New" accelerator="Ctrl + N" onAction="#createNewFile"/>
-                        <MenuItem fx:id="openFile" text="Open..." accelerator="Ctrl + O" onAction="#openFile" />
+                        <MenuItem fx:id="newFile" accelerator="Ctrl + N" onAction="#createNewFile" text="New" />
+                        <MenuItem fx:id="openFile" accelerator="Ctrl + O" onAction="#openFile" text="Open..." />
                         <Menu text="Open recent">
                             <items>
                                 <MenuItem text="Close Menu" />
                             </items>
                         </Menu>
                         <SeparatorMenuItem />
-                        <MenuItem text="Save" accelerator="Ctrl + S" onAction="#saveFile"/>
-                        <MenuItem text="Save As..." accelerator="Ctrl + Shift + S" />
+                        <MenuItem accelerator="Ctrl + S" onAction="#saveFile" text="Save" />
+                        <MenuItem accelerator="Ctrl + Shift + S" text="Save As..." />
                         <SeparatorMenuItem />
-                        <Menu text="Import..." >
+                        <Menu text="Import...">
                             <items>
                                 <MenuItem text="Media..." />
                             </items>
@@ -41,13 +44,13 @@
                 </Menu>
                 <Menu text="Edit">
                     <items>
-                        <MenuItem text="Undo" accelerator="Ctrl + Z" />
-                        <MenuItem text="Redo" accelerator="Ctrl + Y" />
+                        <MenuItem accelerator="Ctrl + Z" text="Undo" />
+                        <MenuItem accelerator="Ctrl + Y" text="Redo" />
                         <SeparatorMenuItem />
-                        <MenuItem text="Cut" accelerator="Ctrl + X" />
-                        <MenuItem text="Copy" accelerator="Ctrl + C" />
-                        <MenuItem text="Paste" accelerator="Ctrl + V" />
-                        <MenuItem text="Duplicate" accelerator="Ctrl + D" />
+                        <MenuItem accelerator="Ctrl + X" text="Cut" />
+                        <MenuItem accelerator="Ctrl + C" text="Copy" />
+                        <MenuItem accelerator="Ctrl + V" text="Paste" />
+                        <MenuItem accelerator="Ctrl + D" text="Duplicate" />
                         <MenuItem text="Delete" />
                     </items>
                 </Menu>
@@ -61,46 +64,118 @@
     </top>
 
     <bottom>
-        <HBox prefHeight="100.0" prefWidth="200.0" spacing="30" alignment="CENTER">
+        <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #00FF80;">
             <padding><Insets topRightBottomLeft="50" /></padding>
                 <children>
-                    <Button fx:id="pianoButton" onAction="#handlePiano">
-                        <graphic>
-                            <ImageView fitHeight="80" fitWidth="80">
-                                <image>
-                                    <Image url="@Photo/piano.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button fx:id="drumsButton" onAction="#handleDrums">
-                        <graphic>
-                            <ImageView fitHeight="80" fitWidth="80">
-                                <image>
-                                    <Image url="@Photo/drums.jpg" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button fx:id="guitarButton" onAction="#handleGuitar">
-                        <graphic>
-                            <ImageView fitHeight="80" fitWidth="80">
-                                <image>
-                                    <Image url="@Photo/guitar.jpg" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button fx:id="violinButton" onAction="#handleViolin">
-                        <graphic>
-                            <ImageView fitHeight="80" fitWidth="80">
-                                <image>
-                                    <Image url="@Photo/violin.jpg" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Button>
+            <MenuButton fx:id="pianoButton" onAction="#handlePiano">
+                <graphic>
+                    <ImageView fitHeight="80" fitWidth="80">
+                        <image>
+                            <Image url="@Photo/piano.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+              <items>
+                  <MenuItem fx:id="doPiano" text="Do" onAction="#handleDoPiano"/>
+                  <MenuItem fx:id="rePiano" text="Re" onAction="#handleRePiano"/>
+                  <MenuItem fx:id="miPiano" text="Mi" onAction="#handleMiPiano"/>
+                  <MenuItem fx:id="faPiano" text="Fa" onAction="#handleFaPiano"/>
+                  <MenuItem fx:id="solPiano" text="Sol" onAction="#handleSolPiano"/>
+                  <MenuItem fx:id="laPiano" text="La" onAction="#handleLaPiano"/>
+                  <MenuItem fx:id="siPiano" text="Si" onAction="#handleSiPiano"/>
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="drumsButton" onAction="#handleDrums">
+                <graphic>
+                    <ImageView fitHeight="80" fitWidth="80">
+                        <image>
+                            <Image url="@Photo/drums.jpg" />
+                        </image>
+                    </ImageView>
+                </graphic>
+              <items>
+                  <MenuItem fx:id="doDrums" text="Do" onAction="#handleDoDrums"/>
+                  <MenuItem fx:id="reDrums" text="Re" onAction="#handleReDrums"/>
+                  <MenuItem fx:id="miDrums" text="Mi" onAction="#handleMiDrums"/>
+                  <MenuItem fx:id="faDrums" text="Fa" onAction="#handleFaDrums"/>
+                  <MenuItem fx:id="solDrums" text="Sol" onAction="#handleSolDrums"/>
+                  <MenuItem fx:id="laDrums" text="La" onAction="#handleLaDrums"/>
+                  <MenuItem fx:id="siDrums" text="Si" onAction="#handleSiDrums"/>
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="guitarButton" onAction="#handleGuitar">
+                <graphic>
+                    <ImageView fitHeight="80" fitWidth="80">
+                        <image>
+                            <Image url="@Photo/guitar.jpg" />
+                        </image>
+                    </ImageView>
+                </graphic>
+              <items>
+                  <MenuItem fx:id="doGuitar" text="Do" onAction="#handleDoGuitar"/>
+                  <MenuItem fx:id="reGuitar" text="Re" onAction="#handleReGuitar"/>
+                  <MenuItem fx:id="miGuitar" text="Mi" onAction="#handleMiGuitar"/>
+                  <MenuItem fx:id="faGuitar" text="Fa" onAction="#handleFaGuitar"/>
+                  <MenuItem fx:id="solGuitar" text="Sol" onAction="#handleSolGuitar"/>
+                  <MenuItem fx:id="laGuitar" text="La" onAction="#handleLaGuitar"/>
+                  <MenuItem fx:id="siGuitar" text="Si" onAction="#handleSiGuitar"/>
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="violinButton" onAction="#handleViolin">
+                <graphic>
+                    <ImageView fitHeight="80" fitWidth="80">
+                        <image>
+                            <Image url="@Photo/violin.jpg" />
+                        </image>
+                    </ImageView>
+                </graphic>
+              <items>
+                  <MenuItem fx:id="doViolin" text="Do" onAction="#handleDoViolin"/>
+                  <MenuItem fx:id="reViolin" text="Re" onAction="#handleReViolin"/>
+                  <MenuItem fx:id="miViolin" text="Mi" onAction="#handleMiViolin"/>
+                  <MenuItem fx:id="faViolin" text="Fa" onAction="#handleFaViolin"/>
+                  <MenuItem fx:id="solViolin" text="Sol" onAction="#handleSolViolin"/>
+                  <MenuItem fx:id="laViolin" text="La" onAction="#handleLaViolin"/>
+                  <MenuItem fx:id="siViolin" text="Si" onAction="#handleSiViolin"/>
+              </items>
+            </MenuButton>
                 </children>
             </HBox>
         </bottom>
+   <left>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #A901DB;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #A901DB;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <Pane fx:id="mvPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" style="-fx-background-color: black;">
+         <children>
+            <MediaView fx:id="mediaView" fitHeight="50.0" fitWidth="700.0" style="-fx-background-color: white;"/>
+            <HBox fx:id="mediaBar" layoutY="476.0" prefHeight="50.0" prefWidth="700.0" style="-fx-background-color: #FE642E;" BorderPane.alignment="CENTER">
+               <children>
+                   <Button fx:id="playButton" onAction="#handlePlay">
+                    <graphic>
+                        <ImageView fitHeight="80" fitWidth="80">
+                            <image>
+                                <Image fx:id="play" url="@Photo/play.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                   </Button>
+
+                   <Button fx:id="stopButton" onAction="#handleStop">
+                       <graphic>
+                           <ImageView fitHeight="80" fitWidth="80">
+                               <image>
+                                   <Image fx:id="stop" url="@Photo/stop.jpg" />
+                               </image>
+                           </ImageView>
+                       </graphic>
+                   </Button>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </center>
 </BorderPane>
