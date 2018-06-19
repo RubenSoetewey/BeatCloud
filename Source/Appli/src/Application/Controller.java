@@ -292,9 +292,12 @@ public class Controller extends BorderPane{
     }
 
     //Media
+    @FXML
     MediaPlayer player;
     @FXML
     MediaView mediaView;
+    @FXML
+    Label spacer;
     @FXML
     Image play;
     @FXML
@@ -302,9 +305,13 @@ public class Controller extends BorderPane{
     final boolean repeat = false;
     boolean stopRequested = false;
     boolean atEndOfMedia = false;
+    @FXML
     Duration duration;
+    @FXML
     Slider timeSlider;
+    @FXML
     Label playTime;
+    @FXML
     Slider volumeSlider;
     @FXML
     Pane mvPane;
@@ -367,8 +374,6 @@ public class Controller extends BorderPane{
         mvPane = new Pane(){                };
         mvPane.getChildren().add(mediaView);
         setCenter(mvPane);
-        mediaBar.setAlignment(Pos.CENTER);
-        mediaBar.setPadding(new Insets(5, 10, 5, 10));
 
         Image pause = new Image(getClass().getResource("Photo/pause.jpg").toExternalForm(), 20, 20, true, true);
 
@@ -412,18 +417,8 @@ public class Controller extends BorderPane{
                 }
             }
         });
-        mediaBar.getChildren().addAll(playButton, stopButton);
-
-    // Add spacer
-    Label spacer = new Label("   ");
-    mediaBar.getChildren().add(spacer);
-
-    // Add Time label
-    Label timeLabel = new Label("Time: ");
-    mediaBar.getChildren().add(timeLabel);
 
     // Add time slider
-    timeSlider = new Slider();
     HBox.setHgrow(timeSlider, Priority.ALWAYS);
     timeSlider.setMinWidth(50);
     timeSlider.setMaxWidth(Double.MAX_VALUE);
@@ -435,20 +430,8 @@ public class Controller extends BorderPane{
             }
         }
     });
-    mediaBar.getChildren().add(timeSlider);
-
-    // Add Play label
-    playTime = new Label();
-    playTime.setPrefWidth(130);
-    playTime.setMinWidth(50);
-    mediaBar.getChildren().add(playTime);
-
-    // Add the volume label
-    Label volumeLabel = new Label("Vol: ");
-    mediaBar.getChildren().add(volumeLabel);
 
     // Add Volume slider
-    volumeSlider = new Slider();
     volumeSlider.setPrefWidth(70);
     volumeSlider.setMaxWidth(Region.USE_PREF_SIZE);
     volumeSlider.setMinWidth(30);
@@ -459,8 +442,6 @@ public class Controller extends BorderPane{
             }
         }
     });
-    mediaBar.getChildren().add(volumeSlider);
-    //setBottom(mediaBar);
 }
 
     private static String formatTime(Duration elapsed, Duration duration) {
