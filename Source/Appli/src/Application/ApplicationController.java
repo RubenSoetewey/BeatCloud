@@ -8,8 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
+import javafx.scene.media.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -36,7 +35,7 @@ import javafx.scene.media.MediaPlayer.Status;
 
 import java.io.File;
 
-public class Controller extends BorderPane{
+public class ApplicationController extends BorderPane{
     @FXML
     Stage primaryStage;
 
@@ -297,6 +296,8 @@ public class Controller extends BorderPane{
     @FXML
     MediaView mediaView;
     @FXML
+    Media media;
+    @FXML
     Label spacer;
     @FXML
     Image play;
@@ -367,7 +368,7 @@ public class Controller extends BorderPane{
         }
     }
 
-    public void Controller(final MediaPlayer player) {
+    public void ApplicationController(final MediaPlayer player) {
         this.player = player;
         setStyle("-fx-background-color: white;");
         mediaView = new MediaView(player);

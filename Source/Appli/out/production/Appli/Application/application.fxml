@@ -19,7 +19,7 @@
 <?import javafx.scene.media.MediaPlayer?>
 <?import javafx.scene.media.MediaView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ApplicationController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -158,7 +158,7 @@
                 <mediaPlayer>
                     <MediaPlayer fx:id="player" autoPlay="true">
                         <media>
-                            <Media source="@Music/test.mp3" />
+                            <Media fx:id="media" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv"/>
                         </media>
                     </MediaPlayer>
                 </mediaPlayer>
