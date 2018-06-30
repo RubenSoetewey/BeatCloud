@@ -38,9 +38,21 @@
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="connectValidation" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" />
-      <Button fx:id="connectAnnulation" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" />
-      <Label text="Pas encore inscrit ? " textFill="skyblue" layoutX="190.0" layoutY="380.0" />
-      <Button fx:id="register" alignment="CENTER" contentDisplay="CENTER" layoutY="400.0" layoutX="190.0" text="Créer un compte" />
+      <Button fx:id="connectValidation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" >
+          <font>
+              <Font name="System Bold" size="12.0" />
+          </font>
+      </Button>
+      <Button fx:id="connectAnnulation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" >
+          <font>
+              <Font name="System Bold" size="12.0" />
+          </font>
+      </Button>
+      <Label text="Pas encore inscrit ? " textFill="skyblue" layoutX="195.0" layoutY="375.0" />
+      <Button fx:id="register" alignment="CENTER" style="-fx-background-color: #0489B1" textFill="white" contentDisplay="CENTER" layoutY="400.0" layoutX="190.0" text="Créer un compte" >
+          <font>
+              <Font name="System Bold" size="12.0" />
+          </font>
+      </Button>
    </children>
 </AnchorPane>

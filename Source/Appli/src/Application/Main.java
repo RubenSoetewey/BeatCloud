@@ -31,11 +31,21 @@ public class Main extends Application {
         FXMLLoader loaderConnection = new FXMLLoader(connectionURL);
         AnchorPane rootConnection = (AnchorPane) loaderConnection.load();
         ConnectionController connection = loaderConnection.getController();
-        Stage secondStage = new Stage(StageStyle.DECORATED);
-        secondStage.setTitle("Connection");
-        secondStage.initModality(Modality.APPLICATION_MODAL);
-        secondStage.setScene(new Scene(rootConnection, 500, 450));
-        secondStage.show();
+        Stage connectionStage = new Stage(StageStyle.DECORATED);
+        connectionStage.setTitle("Connexion");
+        connectionStage.initModality(Modality.APPLICATION_MODAL);
+        connectionStage.setScene(new Scene(rootConnection, 500, 450));
+        //connectionStage.show();
+
+        URL registerURL = getClass().getResource("register.fxml");
+        FXMLLoader loaderRegister = new FXMLLoader(registerURL);
+        AnchorPane rootRegister = (AnchorPane) loaderRegister.load();
+        RegisterController register = loaderRegister.getController();
+        Stage registerStage = new Stage(StageStyle.DECORATED);
+        registerStage.setTitle("Inscription");
+        registerStage.initModality(Modality.APPLICATION_MODAL);
+        registerStage.setScene(new Scene(rootRegister, 500, 710));
+        registerStage.show();
     }
 
     public static void main(String[] args) {
