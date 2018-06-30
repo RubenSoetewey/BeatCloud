@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="500.0" style="-fx-background-color: #0B3861" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ConnectionController">
+<AnchorPane prefHeight="450.0" prefWidth="500.0" style="-fx-background-color: #0B3861" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.ConnectionController">
    <children>
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="20.0">
          <image>
-            <Image url="@Photo/Logo.png" />
+            <Image url="@../Photo/Logo.png" />
          </image>
       </ImageView>
       <VBox layoutY="100.0" prefHeight="450.0" prefWidth="500.0" spacing="5.0">
@@ -31,25 +31,25 @@
             <TextField fx:id="connectLogin" />
             <Label text="Mot de passe: " textFill="skyblue" />
             <PasswordField fx:id="connectPassword" />
-            <Hyperlink fx:id="forgotPassword" contentDisplay="CENTER" prefHeight="29.0" prefWidth="439.0" text="Mot de passe oublié ? " textFill="skyblue" />
-            <CheckBox fx:id="rememberMe" prefHeight="21.0" prefWidth="443.0" text="Se souvenir de moi" textFill="skyblue" />
+            <Hyperlink fx:id="forgotPassword" contentDisplay="CENTER" prefHeight="29.0" prefWidth="439.0" text="Mot de passe oublié ? " textFill="skyblue" onAction="#forgotPassword"/>
+            <CheckBox fx:id="rememberMe" prefHeight="21.0" prefWidth="443.0" text="Se souvenir de moi" textFill="skyblue" onAction="#rememberMe" />
          </children>
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="connectValidation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" >
+      <Button fx:id="connectValidation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" onAction="#openApplication" >
           <font>
               <Font name="System Bold" size="12.0" />
           </font>
       </Button>
-      <Button fx:id="connectAnnulation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" >
+      <Button fx:id="connectAnnulation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" onAction="#closeWindow" >
           <font>
               <Font name="System Bold" size="12.0" />
           </font>
       </Button>
       <Label text="Pas encore inscrit ? " textFill="skyblue" layoutX="195.0" layoutY="375.0" />
-      <Button fx:id="register" alignment="CENTER" style="-fx-background-color: #0489B1" textFill="white" contentDisplay="CENTER" layoutY="400.0" layoutX="190.0" text="Créer un compte" >
+      <Button fx:id="register" alignment="CENTER" style="-fx-background-color: #0489B1" textFill="white" contentDisplay="CENTER" layoutY="400.0" layoutX="190.0" text="Créer un compte" onAction="#openRegisterWindow">
           <font>
               <Font name="System Bold" size="12.0" />
           </font>

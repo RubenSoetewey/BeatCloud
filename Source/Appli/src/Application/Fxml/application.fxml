@@ -19,7 +19,7 @@
 <?import javafx.scene.media.MediaPlayer?>
 <?import javafx.scene.media.MediaView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ApplicationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.ApplicationController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -74,7 +74,7 @@
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
-                            <Image url="@Photo/piano.png" />
+                            <Image url="@../Photo/piano.png" />
                         </image>
                     </ImageView>
                 </graphic>
@@ -92,7 +92,7 @@
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
-                            <Image url="@Photo/drums.jpg" />
+                            <Image url="@../Photo/drums.jpg" />
                         </image>
                     </ImageView>
                 </graphic>
@@ -110,7 +110,7 @@
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
-                            <Image url="@Photo/guitar.jpg" />
+                            <Image url="@../Photo/guitar.jpg" />
                         </image>
                     </ImageView>
                 </graphic>
@@ -128,7 +128,7 @@
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
-                            <Image url="@Photo/violin.jpg" />
+                            <Image url="@../Photo/violin.jpg" />
                         </image>
                     </ImageView>
                 </graphic>
@@ -169,7 +169,7 @@
                     <graphic>
                         <ImageView fitHeight="32" fitWidth="32">
                             <image>
-                                <Image fx:id="play" url="@Photo/play.jpg" />
+                                <Image fx:id="play" url="@../Photo/play.jpg" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -179,7 +179,7 @@
                        <graphic>
                            <ImageView fitHeight="32" fitWidth="32">
                                <image>
-                                   <Image fx:id="stop" url="@Photo/stop.jpg" />
+                                   <Image fx:id="stop" url="@../Photo/stop.jpg" />
                                </image>
                            </ImageView>
                        </graphic>
