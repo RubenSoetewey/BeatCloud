@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
@@ -28,12 +29,12 @@ public class Main extends Application {
 
         URL connectionURL = getClass().getResource("connection.fxml");
         FXMLLoader loaderConnection = new FXMLLoader(connectionURL);
-        DialogPane rootConnection = (DialogPane)loaderConnection.load();
+        AnchorPane rootConnection = (AnchorPane) loaderConnection.load();
         ConnectionController connection = loaderConnection.getController();
         Stage secondStage = new Stage(StageStyle.DECORATED);
         secondStage.setTitle("Connection");
         secondStage.initModality(Modality.APPLICATION_MODAL);
-        secondStage.setScene(new Scene(rootConnection, 500, 500));
+        secondStage.setScene(new Scene(rootConnection, 500, 450));
         secondStage.show();
     }
 

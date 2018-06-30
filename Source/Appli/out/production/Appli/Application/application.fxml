@@ -19,47 +19,47 @@
 <?import javafx.scene.media.MediaPlayer?>
 <?import javafx.scene.media.MediaView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ApplicationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ApplicationController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
-                <Menu text="File">
+                <Menu text="Fichier">
                     <items>
-                        <MenuItem fx:id="newFile" accelerator="Ctrl + N" onAction="#createNewFile" text="New" />
-                        <MenuItem fx:id="openFile" accelerator="Ctrl + O" onAction="#openFile" text="Open..." />
-                        <Menu text="Open recent">
+                        <MenuItem fx:id="newFile" accelerator="Ctrl + N" onAction="#createNewFile" text="Nouveau fichier" />
+                        <MenuItem fx:id="openFile" accelerator="Ctrl + O" onAction="#openFile" text="Ouvrir un fichier..." />
+                        <Menu text="Ouvrir un fichier récent">
                             <items>
-                                <MenuItem text="Close Menu" />
+                                <MenuItem text="Fermer le menu" />
                             </items>
                         </Menu>
                         <SeparatorMenuItem />
-                        <MenuItem accelerator="Ctrl + S" onAction="#saveFile" text="Save" />
-                        <MenuItem accelerator="Ctrl + Shift + S" text="Save As..." />
+                        <MenuItem accelerator="Ctrl + S" onAction="#saveFile" text="Enregistrer le fichier" />
+                        <MenuItem accelerator="Ctrl + Shift + S" text="Enregistrer sous..." />
                         <SeparatorMenuItem />
-                        <Menu text="Import...">
+                        <Menu text="Importer...">
                             <items>
-                                <MenuItem text="Media..." />
+                                <MenuItem text="Média..." />
                             </items>
                         </Menu>
-                        <MenuItem text="Preferences" />
-                        <MenuItem text="Close" />
+                        <MenuItem text="Préférences" />
+                        <MenuItem text="Fermer" />
                     </items>
                 </Menu>
-                <Menu text="Edit">
+                <Menu text="Editer">
                     <items>
-                        <MenuItem accelerator="Ctrl + Z" text="Undo" />
-                        <MenuItem accelerator="Ctrl + Y" text="Redo" />
+                        <MenuItem accelerator="Ctrl + Z" text="Annuler la saisie" />
+                        <MenuItem accelerator="Ctrl + Y" text="Rétablir la saisie" />
                         <SeparatorMenuItem />
-                        <MenuItem accelerator="Ctrl + X" text="Cut" />
-                        <MenuItem accelerator="Ctrl + C" text="Copy" />
-                        <MenuItem accelerator="Ctrl + V" text="Paste" />
-                        <MenuItem accelerator="Ctrl + D" text="Duplicate" />
-                        <MenuItem text="Delete" />
+                        <MenuItem accelerator="Ctrl + X" text="Couper" />
+                        <MenuItem accelerator="Ctrl + C" text="Copier" />
+                        <MenuItem accelerator="Ctrl + V" text="Coller" />
+                        <MenuItem accelerator="Ctrl + D" text="Dupliquer" />
+                        <MenuItem text="Supprimer" />
                     </items>
                 </Menu>
-                <Menu text="Help">
+                <Menu text="Aide">
                     <items>
-                        <MenuItem text="About" />
+                        <MenuItem text="A propos" />
                     </items>
                 </Menu>
             </menus>
@@ -154,11 +154,11 @@
    <center>
       <Pane fx:id="mvPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <MediaView fx:id="mediaView" fitHeight="50.0" fitWidth="700.0">
+            <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="700.0">
                 <mediaPlayer>
-                    <MediaPlayer fx:id="player" autoPlay="true">
+                    <MediaPlayer fx:id="player" autoPlay="false">
                         <media>
-                            <Media fx:id="media" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv"/>
+                            <Media fx:id="media" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv" />
                         </media>
                     </MediaPlayer>
                 </mediaPlayer>
@@ -188,7 +188,7 @@
                    <Label fx:id="spacer" text="   " />
                    <Label fx:id="timeLabel" text="Time: " />
                    <Slider fx:id="timeSlader" />
-                   <Label fx:id="playTime" prefWidth="130.0" minWidth="50.0"/>
+                   <Label fx:id="playTime" minWidth="50.0" prefWidth="130.0" />
                    <Label fx:id="volumeLabel" text="Vol: " />
                    <Slider fx:id="volumeSlider" />
                </children>
