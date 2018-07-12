@@ -1,14 +1,15 @@
 package Application.Controllers;
 
+import Application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
 import javafx.scene.media.*;
+import javafx.scene.shape.Path;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -22,18 +23,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 import javafx.event.*;
-import javafx.scene.layout.Region;
 import javafx.scene.media.MediaPlayer.Status;
 
+import javax.sound.sampled.*;
+import javax.xml.transform.Source;
+
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Paths;
 
 public class ApplicationController extends BorderPane{
     @FXML
@@ -43,6 +46,62 @@ public class ApplicationController extends BorderPane{
     @FXML
     MenuButton pianoButton;
     @FXML
+    Button pianoTest;
+
+    @FXML
+    public void onDragDetected(MouseEvent onDragDetected) {
+        System.out.println("onDragDetected");
+        Dragboard dragboard = pianoButton.startDragAndDrop(TransferMode.COPY);
+        dragboard.setDragView(pianoButton.snapshot(null, null));
+        ClipboardContent content = new ClipboardContent();
+        //content.putImage()
+        dragboard.setContent(content);
+
+        onDragDetected.consume();
+    }
+
+    @FXML
+    public void onDragOver(DragEvent onDragOver) {
+        System.out.println("onDragOver");
+        if(onDragOver.getGestureSource() != mvPane && onDragOver.getDragboard().hasImage()) {
+            onDragOver.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
+        onDragOver.consume();
+    }
+
+    @FXML
+    public void onDragEntered(DragEvent onDragEntered) {
+        System.out.println("onDragEntered");
+        if(onDragEntered.getGestureSource() != mvPane && onDragEntered.getDragboard().hasImage()) {
+            //mvPane.set
+        }
+    }
+    /*double orgSceneX, orgSceneY;
+    double orgTranslateX, orgTranslateY;
+
+    @FXML
+    public void onMousePressed(MouseEvent onMousePressed) {
+        //pianoButton.startDragAndDrop(TransferMode.COPY);
+        orgSceneX = onMousePressed.getSceneX();
+        orgSceneY = onMousePressed.getSceneY();
+        orgTranslateX = ((MenuButton) (onMousePressed.getSource())).getTranslateX();
+        orgTranslateY = ((MenuButton) (onMousePressed.getSource())).getTranslateY();
+
+        ((MenuButton) (onMousePressed.getSource())).toFront();
+    }
+
+    @FXML
+    public void onMouseDragged(MouseEvent onMouseDragged) {
+        double offsetX = onMouseDragged.getSceneX() - orgSceneX;
+        double offsetY = onMouseDragged.getSceneY() - orgSceneY;
+        double newTranslateX = orgTranslateX + offsetX;
+        double newTranslateY = orgTranslateY + offsetY;
+
+        ((MenuButton) (onMouseDragged.getSource())).setTranslateX(newTranslateX);
+        ((MenuButton) (onMouseDragged.getSource())).setTranslateY(newTranslateY);
+    }*/
+
+    @FXML
     public void handlePiano(ActionEvent event){System.out.println("ok piano"); }
 
     @FXML
@@ -50,6 +109,51 @@ public class ApplicationController extends BorderPane{
     @FXML
     public void handleDoPiano(ActionEvent event){
         System.out.println("doPiano ok");
+        /*String sound = "C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3";
+        Media piano1 = new Media(new File(sound).toURI().toString());
+        MediaPlayer piano1Player = new MediaPlayer(piano1);
+        piano1Player.setVolume(40.0);
+        Status status = piano1Player.getStatus();
+        if(status == Status.UNKNOWN || status == Status.HALTED){
+            return;
+        }
+        if (status == Status.READY)
+        {
+            piano1Player.play();
+        }*/
+    }
+
+    @FXML
+    Button playPiano1;
+    @FXML
+    Media piano;
+    @FXML
+    MediaPlayer piano1Player;
+    @FXML
+    MediaView piano1View;
+    @FXML
+    public void listenSound(ActionEvent pressed) {
+        /*String sound = "C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3";
+        Media piano1 = new Media(new File(sound).toURI().toString());
+        MediaPlayer piano1Player = new MediaPlayer(piano1);
+        piano1Player.setVolume(40.0);
+        Status status = piano1Player.getStatus();
+        if(status == Status.UNKNOWN || status == Status.HALTED){
+            return;
+        }
+        if (status == Status.READY)
+        {
+            piano1Player.play();
+        }*/
+
+        /*piano = new Media(new File("Music/test.mp3").toURI().toString());//Main.class.getClass().getResourceAsStream("Music/test.mp3"));
+        piano1Player = new MediaPlayer(piano);
+        piano1Player.setVolume(1);
+        piano1View = new MediaView(piano1Player);
+        piano1Player.play();
+
+        System.out.println("kikou");*/
+
     }
 
     @FXML
@@ -292,13 +396,11 @@ public class ApplicationController extends BorderPane{
 
     //Media
     @FXML
-    MediaPlayer player;
+    MediaView mainView;
     @FXML
-    MediaView mediaView;
+    MediaPlayer mainPlayer;
     @FXML
-    Media media;
-    @FXML
-    Label spacer;
+    Media mainMedia;
     @FXML
     Image play;
     @FXML
@@ -317,26 +419,29 @@ public class ApplicationController extends BorderPane{
     @FXML
     Pane mvPane;
     @FXML
+    Pane musicPane;
+    @FXML
     HBox mediaBar;
     @FXML
     Button playButton;
     @FXML
     public void handlePlay(ActionEvent event){
-        Status status = player.getStatus();
+        Status status = mainPlayer.getStatus();
         if(status == Status.UNKNOWN || status == Status.HALTED){
             return;
         }
         if (status == Status.PAUSED
-                || status == Status.READY)
+            || status == Status.READY
+            || status == Status.STOPPED)
         {
             // rewind the movie if we're sitting at the end
             if (atEndOfMedia) {
-                player.seek(player.getStartTime());
+                mainPlayer.seek(mainPlayer.getStartTime());
                 atEndOfMedia = false;
             }
-            player.play();
+            mainPlayer.play();
         } else {
-            player.pause();
+            mainPlayer.pause();
         }
     }
 
@@ -344,37 +449,39 @@ public class ApplicationController extends BorderPane{
     Button stopButton;
     @FXML
     public void handleStop(ActionEvent event){
-        Status status = player.getStatus();
+        Status status = mainPlayer.getStatus();
         if (status == Status.UNKNOWN || status == Status.HALTED) {
             // don't do anything in these states
-            player.play();
+            mainPlayer.play();
             return;
         }
         if (status == Status.STOPPED)
         {
             // rewind the movie if we're sitting at the end
             if (atEndOfMedia) {
-                player.seek(player.getStartTime());
+                mainPlayer.seek(mainPlayer.getStartTime());
                 atEndOfMedia = false;
             }
-            player.play();
+            mainPlayer.play();
         } else {
-            player.stop();
+            mainPlayer.stop();
             playButton.setGraphic(new ImageView(play));
-            player.pause();
+            mainPlayer.pause();
             if(playButton.isPressed()){
-                player.play();
+                mainPlayer.play();
             }
         }
     }
 
     public void ApplicationController(final MediaPlayer player) {
-        this.player = player;
+        this.mainPlayer = player;
         setStyle("-fx-background-color: white;");
-        mediaView = new MediaView(player);
-        mvPane = new Pane(){                };
-        mvPane.getChildren().add(mediaView);
-        setCenter(mvPane);
+        mainView = new MediaView(player);
+        musicPane = new Pane(){                };
+        musicPane.getChildren().add(mainView);
+        setCenter(musicPane);
+
+
 
         Image pause = new Image(getClass().getResource("Photo/pause.jpg").toExternalForm(), 20, 20, true, true);
 
@@ -420,26 +527,22 @@ public class ApplicationController extends BorderPane{
         });
 
     // Add time slider
-    HBox.setHgrow(timeSlider, Priority.ALWAYS);
-    timeSlider.setMinWidth(50);
     timeSlider.setMaxWidth(Double.MAX_VALUE);
     timeSlider.valueProperty().addListener(new InvalidationListener() {
         public void invalidated(Observable ov) {
             if (timeSlider.isValueChanging()) {
                 // multiply duration by percentage calculated by slider position
-                player.seek(duration.multiply(timeSlider.getValue() / 100.0));
+                mainPlayer.seek(duration.multiply(timeSlider.getValue() / 100.0));
             }
         }
     });
 
     // Add Volume slider
-    volumeSlider.setPrefWidth(70);
     volumeSlider.setMaxWidth(Region.USE_PREF_SIZE);
-    volumeSlider.setMinWidth(30);
     volumeSlider.valueProperty().addListener(new InvalidationListener() {
         public void invalidated(Observable ov) {
             if (volumeSlider.isValueChanging()) {
-                player.setVolume(volumeSlider.getValue() / 100.0);
+                mainPlayer.setVolume(volumeSlider.getValue() / 100.0);
             }
         }
     });
@@ -480,7 +583,7 @@ public class ApplicationController extends BorderPane{
         if (playTime != null && timeSlider != null && volumeSlider != null) {
             Platform.runLater(new Runnable() {
                 public void run() {
-                    Duration currentTime = player.getCurrentTime();
+                    Duration currentTime = mainPlayer.getCurrentTime();
                     playTime.setText(formatTime(currentTime, duration));
                     timeSlider.setDisable(duration.isUnknown());
                     if (!timeSlider.isDisabled()
@@ -489,7 +592,7 @@ public class ApplicationController extends BorderPane{
                         timeSlider.setValue(currentTime.divide(duration).toMillis() * 100.0);
                     }
                     if (!volumeSlider.isValueChanging()) {
-                        volumeSlider.setValue((int)Math.round(player.getVolume() * 100));
+                        volumeSlider.setValue((int)Math.round(mainPlayer.getVolume() * 100));
                     }
                 }
             });

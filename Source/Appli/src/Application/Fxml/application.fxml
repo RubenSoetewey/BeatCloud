@@ -57,6 +57,11 @@
                         <MenuItem text="Supprimer" />
                     </items>
                 </Menu>
+                <Menu text="Plugin">
+                    <items>
+                        <MenuItem fx:id="plugin" text="Ajouter un plugin" />
+                    </items>
+                </Menu>
                 <Menu text="Aide">
                     <items>
                         <MenuItem text="A propos" />
@@ -66,11 +71,81 @@
         </MenuBar>
     </top>
 
+    <left>
+        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #0B3861" BorderPane.alignment="CENTER" />
+    </left>
+
+    <right>
+        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #0B3861" BorderPane.alignment="CENTER" />
+    </right>
+
+    <center>
+        <Pane fx:id="mvPane" prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+            <children>
+                <Pane fx:id="musicPane" prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView>
+                            <image>
+                                <Image requestedHeight="400.0" requestedWidth="700.0" url="@../Photo/music-.jpg" />
+                            </image>
+                        </ImageView>
+                        <MediaView fx:id="mainView" fitHeight="400.0" fitWidth="700.0">
+                            <mediaPlayer>
+                                <MediaPlayer fx:id="mainPlayer" autoPlay="true">
+                                    <media>
+                                        <Media fx:id="mainMedia" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv" />
+                                    </media>
+                                </MediaPlayer>
+                            </mediaPlayer>
+                        </MediaView>
+                    </children>
+                    <HBox fx:id="dropZone" alignment="CENTER_LEFT" prefWidth="700.0" prefHeight="400.0" layoutY="250.0" style="-fx-background-color: blueviolet">
+
+                    </HBox>
+                </Pane>
+                <HBox fx:id="mediaBar" alignment="CENTER_LEFT" layoutY="476.0" prefWidth="700.0" style="-fx-background-color: #FE642E;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="playButton" onAction="#handlePlay">
+                            <graphic>
+                                <ImageView fitHeight="32" fitWidth="32">
+                                    <image>
+                                        <Image fx:id="play" url="@../Photo/play.jpg" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Label fx:id="spacer1" text="   " />
+                        <Button fx:id="stopButton" onAction="#handleStop">
+                            <graphic>
+                                <ImageView fitHeight="32" fitWidth="32">
+                                    <image>
+                                        <Image fx:id="stop" url="@../Photo/stop.jpg" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+
+                        <Label fx:id="spacer2" text="   " />
+                        <Label fx:id="timeLabel" text="Time: " />
+                        <Slider fx:id="timeSlader" HBox.hgrow="ALWAYS" minWidth="50.0" />
+                        <Label fx:id="playTime" minWidth="50.0" prefWidth="130.0" text="00:00:00"/>
+                        <Label fx:id="volumeLabel" text="Vol: " />
+                        <Slider fx:id="volumeSlider" prefWidth="70.0" minWidth="30.0"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </Pane>
+    </center>
+
     <bottom>
-        <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #00FF80;">
+        <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
             <padding><Insets topRightBottomLeft="50" /></padding>
-                <children>
-            <MenuButton fx:id="pianoButton" onAction="#handlePiano">
+            <children>
+            <Button fx:id="pianoTest" onDragDetected="#onDragDetected" onDragOver="#onDragOver" text="pianoTest" />
+            <MenuButton fx:id="pianoButton" onAction="#handlePiano" onDragDetected="#onDragDetected">
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
@@ -79,7 +154,19 @@
                     </ImageView>
                 </graphic>
               <items>
-                  <MenuItem fx:id="doPiano" onAction="#handleDoPiano" text="Do" />
+                  <MenuItem fx:id="doPiano" onAction="#listenSound" text="Do">
+                     <graphic>
+                        <Button fx:id="playPiano1" onAction="#listenSound">
+                           <graphic>
+                              <ImageView fitHeight="10.0" fitWidth="10.0">
+                                  <image>
+                                      <Image url="@../Photo/play.jpg" />
+                                  </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </graphic>
+                  </MenuItem>
                   <MenuItem fx:id="rePiano" onAction="#handleRePiano" text="Re" />
                   <MenuItem fx:id="miPiano" onAction="#handleMiPiano" text="Mi" />
                   <MenuItem fx:id="faPiano" onAction="#handleFaPiano" text="Fa" />
@@ -88,7 +175,7 @@
                   <MenuItem fx:id="siPiano" onAction="#handleSiPiano" text="Si" />
               </items>
             </MenuButton>
-            <MenuButton fx:id="drumsButton" onAction="#handleDrums">
+            <MenuButton fx:id="drumsButton" onAction="#handleDrums" onDragDetected="#onDragDetected">
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
@@ -142,61 +229,7 @@
                   <MenuItem fx:id="siViolin" onAction="#handleSiViolin" text="Si" />
               </items>
             </MenuButton>
-                </children>
-            </HBox>
-        </bottom>
-   <left>
-      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #A901DB;" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #A901DB;" BorderPane.alignment="CENTER" />
-   </right>
-   <center>
-      <Pane fx:id="mvPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-         <children>
-            <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="700.0">
-                <mediaPlayer>
-                    <MediaPlayer fx:id="player" autoPlay="false">
-                        <media>
-                            <Media fx:id="media" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv" />
-                        </media>
-                    </MediaPlayer>
-                </mediaPlayer>
-            </MediaView>
-            <HBox fx:id="mediaBar" alignment="CENTER_LEFT" layoutY="476.0" prefWidth="700.0" style="-fx-background-color: #FE642E;" BorderPane.alignment="CENTER">
-               <children>
-                   <Button fx:id="playButton" onAction="#handlePlay">
-                    <graphic>
-                        <ImageView fitHeight="32" fitWidth="32">
-                            <image>
-                                <Image fx:id="play" url="@../Photo/play.jpg" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                   </Button>
-
-                   <Button fx:id="stopButton" onAction="#handleStop">
-                       <graphic>
-                           <ImageView fitHeight="32" fitWidth="32">
-                               <image>
-                                   <Image fx:id="stop" url="@../Photo/stop.jpg" />
-                               </image>
-                           </ImageView>
-                       </graphic>
-                   </Button>
-
-                   <Label fx:id="spacer" text="   " />
-                   <Label fx:id="timeLabel" text="Time: " />
-                   <Slider fx:id="timeSlader" />
-                   <Label fx:id="playTime" minWidth="50.0" prefWidth="130.0" />
-                   <Label fx:id="volumeLabel" text="Vol: " />
-                   <Slider fx:id="volumeSlider" />
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-               </padding>
-            </HBox>
-         </children>
-      </Pane>
-   </center>
+            </children>
+        </HBox>
+    </bottom>
 </BorderPane>

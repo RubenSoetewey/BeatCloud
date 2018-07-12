@@ -12,8 +12,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.net.URL;
 import java.util.Optional;
 
 public class ConnectionController extends AnchorPane{
@@ -27,7 +25,7 @@ public class ConnectionController extends AnchorPane{
     @FXML
     PasswordField connectPassword;
     @FXML
-    public void openApplication(ActionEvent onMouseClicked)throws Exception {
+    public void openApplication(ActionEvent onMouseClicked) throws Exception {
         if (connectLogin.getText().length() != 0 && connectPassword.getText().length() != 0) {
             FXMLLoader loaderApplication = new FXMLLoader();
             loaderApplication.setLocation(Main.class.getResource("Fxml/application.fxml"));
