@@ -34,7 +34,7 @@
                         </Menu>
                         <SeparatorMenuItem />
                         <MenuItem accelerator="Ctrl + S" onAction="#saveFile" text="Enregistrer le fichier" />
-                        <MenuItem accelerator="Ctrl + Shift + S" text="Enregistrer sous..." />
+                        <MenuItem accelerator="Ctrl + Shift + S" onAction="#saveFile" text="Enregistrer sous..." />
                         <SeparatorMenuItem />
                         <Menu text="Importer...">
                             <items>
@@ -80,36 +80,35 @@
     </right>
 
     <center>
-        <Pane fx:id="mvPane" prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+        <Pane fx:id="musicPane" prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
             <children>
-                <Pane fx:id="musicPane" prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+                <ImageView>
+                    <image>
+                        <Image requestedHeight="400.0" requestedWidth="700.0" url="@../Photo/music-.jpg" />
+                    </image>
+                </ImageView>
+                <MediaView fx:id="mainView" fitHeight="400.0" fitWidth="700.0">
+                    <mediaPlayer>
+                        <MediaPlayer fx:id="mainPlayer" autoPlay="true">
+                            <media>
+                                <Media fx:id="mainMedia" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv" />
+                            </media>
+                        </MediaPlayer>
+                    </mediaPlayer>
+                </MediaView>
+                <HBox fx:id="dropZone" onDragOver="#onDragOver" onDragEntered="#onDragEntered" onDragExited="#onDragExited" onDragDropped="#onDragDropped" alignment="CENTER_LEFT" layoutY="260.0" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: blueviolet"  >
                     <children>
-                        <ImageView>
-                            <image>
-                                <Image requestedHeight="400.0" requestedWidth="700.0" url="@../Photo/music-.jpg" />
-                            </image>
-                        </ImageView>
-                        <MediaView fx:id="mainView" fitHeight="400.0" fitWidth="700.0">
-                            <mediaPlayer>
-                                <MediaPlayer fx:id="mainPlayer" autoPlay="true">
-                                    <media>
-                                        <Media fx:id="mainMedia" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv" />
-                                    </media>
-                                </MediaPlayer>
-                            </mediaPlayer>
-                        </MediaView>
-                    </children>
-                    <HBox fx:id="dropZone" alignment="CENTER_LEFT" prefWidth="700.0" prefHeight="400.0" layoutY="250.0" style="-fx-background-color: blueviolet">
 
-                    </HBox>
-                </Pane>
-                <HBox fx:id="mediaBar" alignment="CENTER_LEFT" layoutY="476.0" prefWidth="700.0" style="-fx-background-color: #FE642E;" BorderPane.alignment="CENTER">
+                    </children>
+                </HBox>
+                <HBox fx:id="mediaBar" alignment="CENTER_LEFT" layoutY="250.0" prefWidth="700.0" style="-fx-background-color: #FE642E;" BorderPane.alignment="CENTER">
                     <children>
                         <Button fx:id="playButton" onAction="#handlePlay">
                             <graphic>
                                 <ImageView fitHeight="32" fitWidth="32">
                                     <image>
                                         <Image fx:id="play" url="@../Photo/play.jpg" />
+                                        <Image fx:id="pause" url="@../Photo/pause.jpg" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -127,10 +126,10 @@
 
                         <Label fx:id="spacer2" text="   " />
                         <Label fx:id="timeLabel" text="Time: " />
-                        <Slider fx:id="timeSlader" HBox.hgrow="ALWAYS" minWidth="50.0" />
-                        <Label fx:id="playTime" minWidth="50.0" prefWidth="130.0" text="00:00:00"/>
+                        <Slider fx:id="timeSlader" minWidth="50.0" />
+                        <Label fx:id="playTime" minWidth="50.0" prefWidth="100.0" />
                         <Label fx:id="volumeLabel" text="Vol: " />
-                        <Slider fx:id="volumeSlider" prefWidth="70.0" minWidth="30.0"/>
+                        <Slider fx:id="volumeSlider" minWidth="30.0" prefWidth="70.0" />
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
@@ -144,8 +143,8 @@
         <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
             <padding><Insets topRightBottomLeft="50" /></padding>
             <children>
-            <Button fx:id="pianoTest" onDragDetected="#onDragDetected" onDragOver="#onDragOver" text="pianoTest" />
-            <MenuButton fx:id="pianoButton" onAction="#handlePiano" onDragDetected="#onDragDetected">
+            <Button fx:id="pianoTest" onDragDetected="#onDragDetected" onDragDone="#onDragDone" text="pianoTest"/>
+            <MenuButton fx:id="pianoButton">
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
@@ -154,9 +153,9 @@
                     </ImageView>
                 </graphic>
               <items>
-                  <MenuItem fx:id="doPiano" onAction="#listenSound" text="Do">
+                  <MenuItem fx:id="doPiano" text="Do">
                      <graphic>
-                        <Button fx:id="playPiano1" onAction="#listenSound">
+                        <Button fx:id="playPiano1" >
                            <graphic>
                               <ImageView fitHeight="10.0" fitWidth="10.0">
                                   <image>
@@ -167,15 +166,15 @@
                         </Button>
                      </graphic>
                   </MenuItem>
-                  <MenuItem fx:id="rePiano" onAction="#handleRePiano" text="Re" />
-                  <MenuItem fx:id="miPiano" onAction="#handleMiPiano" text="Mi" />
-                  <MenuItem fx:id="faPiano" onAction="#handleFaPiano" text="Fa" />
-                  <MenuItem fx:id="solPiano" onAction="#handleSolPiano" text="Sol" />
-                  <MenuItem fx:id="laPiano" onAction="#handleLaPiano" text="La" />
-                  <MenuItem fx:id="siPiano" onAction="#handleSiPiano" text="Si" />
+                  <MenuItem fx:id="rePiano" text="Re" />
+                  <MenuItem fx:id="miPiano" text="Mi" />
+                  <MenuItem fx:id="faPiano" text="Fa" />
+                  <MenuItem fx:id="solPiano" text="Sol" />
+                  <MenuItem fx:id="laPiano" text="La" />
+                  <MenuItem fx:id="siPiano" text="Si" />
               </items>
             </MenuButton>
-            <MenuButton fx:id="drumsButton" onAction="#handleDrums" onDragDetected="#onDragDetected">
+            <MenuButton fx:id="drumsButton" >
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
@@ -184,16 +183,16 @@
                     </ImageView>
                 </graphic>
               <items>
-                  <MenuItem fx:id="doDrums" onAction="#handleDoDrums" text="Do" />
-                  <MenuItem fx:id="reDrums" onAction="#handleReDrums" text="Re" />
-                  <MenuItem fx:id="miDrums" onAction="#handleMiDrums" text="Mi" />
-                  <MenuItem fx:id="faDrums" onAction="#handleFaDrums" text="Fa" />
-                  <MenuItem fx:id="solDrums" onAction="#handleSolDrums" text="Sol" />
-                  <MenuItem fx:id="laDrums" onAction="#handleLaDrums" text="La" />
-                  <MenuItem fx:id="siDrums" onAction="#handleSiDrums" text="Si" />
+                  <MenuItem fx:id="doDrums" text="Do" />
+                  <MenuItem fx:id="reDrums"  text="Re" />
+                  <MenuItem fx:id="miDrums" text="Mi" />
+                  <MenuItem fx:id="faDrums" text="Fa" />
+                  <MenuItem fx:id="solDrums" text="Sol" />
+                  <MenuItem fx:id="laDrums" text="La" />
+                  <MenuItem fx:id="siDrums" text="Si" />
               </items>
             </MenuButton>
-            <MenuButton fx:id="guitarButton" onAction="#handleGuitar">
+            <MenuButton fx:id="guitarButton" >
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
@@ -202,16 +201,16 @@
                     </ImageView>
                 </graphic>
               <items>
-                  <MenuItem fx:id="doGuitar" onAction="#handleDoGuitar" text="Do" />
-                  <MenuItem fx:id="reGuitar" onAction="#handleReGuitar" text="Re" />
-                  <MenuItem fx:id="miGuitar" onAction="#handleMiGuitar" text="Mi" />
-                  <MenuItem fx:id="faGuitar" onAction="#handleFaGuitar" text="Fa" />
-                  <MenuItem fx:id="solGuitar" onAction="#handleSolGuitar" text="Sol" />
-                  <MenuItem fx:id="laGuitar" onAction="#handleLaGuitar" text="La" />
-                  <MenuItem fx:id="siGuitar" onAction="#handleSiGuitar" text="Si" />
+                  <MenuItem fx:id="doGuitar" text="Do" />
+                  <MenuItem fx:id="reGuitar" text="Re" />
+                  <MenuItem fx:id="miGuitar" text="Mi" />
+                  <MenuItem fx:id="faGuitar" text="Fa" />
+                  <MenuItem fx:id="solGuitar" text="Sol" />
+                  <MenuItem fx:id="laGuitar" text="La" />
+                  <MenuItem fx:id="siGuitar" text="Si" />
               </items>
             </MenuButton>
-            <MenuButton fx:id="violinButton" onAction="#handleViolin">
+            <MenuButton fx:id="violinButton" >
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">
                         <image>
@@ -220,13 +219,13 @@
                     </ImageView>
                 </graphic>
               <items>
-                  <MenuItem fx:id="doViolin" onAction="#handleDoViolin" text="Do" />
-                  <MenuItem fx:id="reViolin" onAction="#handleReViolin" text="Re" />
-                  <MenuItem fx:id="miViolin" onAction="#handleMiViolin" text="Mi" />
-                  <MenuItem fx:id="faViolin" onAction="#handleFaViolin" text="Fa" />
-                  <MenuItem fx:id="solViolin" onAction="#handleSolViolin" text="Sol" />
-                  <MenuItem fx:id="laViolin" onAction="#handleLaViolin" text="La" />
-                  <MenuItem fx:id="siViolin" onAction="#handleSiViolin" text="Si" />
+                  <MenuItem fx:id="doViolin" text="Do" />
+                  <MenuItem fx:id="reViolin" text="Re" />
+                  <MenuItem fx:id="miViolin" text="Mi" />
+                  <MenuItem fx:id="faViolin" text="Fa" />
+                  <MenuItem fx:id="solViolin" text="Sol" />
+                  <MenuItem fx:id="laViolin" text="La" />
+                  <MenuItem fx:id="siViolin" text="Si" />
               </items>
             </MenuButton>
             </children>
