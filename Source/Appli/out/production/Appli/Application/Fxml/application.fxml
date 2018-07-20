@@ -89,7 +89,7 @@
                 </ImageView>
                 <MediaView fx:id="mainView" fitHeight="400.0" fitWidth="700.0">
                     <mediaPlayer>
-                        <MediaPlayer fx:id="mainPlayer" autoPlay="true">
+                        <MediaPlayer fx:id="mainPlayer" autoPlay="false">
                             <media>
                                 <Media fx:id="mainMedia" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv" />
                             </media>
@@ -140,10 +140,27 @@
     </center>
 
     <bottom>
-        <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
+        <HBox fx:id="soundZone" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
             <padding><Insets topRightBottomLeft="50" /></padding>
             <children>
-            <Button fx:id="pianoTest" onDragDetected="#onDragDetected" onDragDone="#onDragDone" text="pianoTest"/>
+            <Button fx:id="pianoTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" text="pianoTest">
+                <graphic>
+                    <Pane>
+                        <children>
+                            <MediaView fitWidth="50" fitHeight="1" visible="false">
+                                <mediaPlayer>
+                                    <MediaPlayer fx:id="pianoPlayer" autoPlay="false">
+                                        <media>
+                                            <Media fx:id="pianoMedia" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv"/>
+                                        </media>
+                                    </MediaPlayer>
+                                </mediaPlayer>
+                            </MediaView>
+                        </children>
+                    </Pane>
+                </graphic>
+            </Button>
+            <Button fx:id="guitarTest" onDragDetected="#onDragDetected" onDragDone="#onDragDone" text="guitarTest"/>
             <MenuButton fx:id="pianoButton">
                 <graphic>
                     <ImageView fitHeight="80" fitWidth="80">

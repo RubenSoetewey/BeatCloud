@@ -1,27 +1,18 @@
 package Application.Controllers;
 
-import Application.Controllers.MediaController;
-import Application.Controllers.FileController;
-
-import Application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.beans.InvalidationListener;
 import javafx.application.Platform;
 import javafx.beans.Observable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -30,20 +21,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.util.Duration;
-import javafx.event.*;
 import javafx.scene.media.MediaPlayer.Status;
 
-import javax.sound.sampled.*;
-import javax.swing.*;
-import javax.xml.transform.Source;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Paths;
 
 public class ApplicationController extends BorderPane {
     @FXML
@@ -57,16 +37,19 @@ public class ApplicationController extends BorderPane {
     public void createNewFile(ActionEvent event) {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Create new file");
-        fileChoosed.setInitialDirectory(new File("./"));
-        fileChoosed.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Audio Files", "*.mp3"));
+        fileChoosed.setInitialDirectory(new File(System.getProperty("user.home")  + "/Desktop")); //position on desktop
+        fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("WAV Files", "*.wav"), new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"));
         newFile.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
         File selectedFile = fileChoosed.showSaveDialog(primaryStage);
         if (selectedFile != null) {
             System.out.println(selectedFile);
+            //List<File> files = Arrays.asList(selectedFile);
+            //mainView.setMediaPlayer(new Media(files.add(selectedFile)));
             //openFile(selectedFile);
             //System.out.println("You chose to open this file: " + fileChoosed.getTitle());//.getSelectedFile().getName());
-            //mainStage.display(selectedFile);
+            //mainView.setMediaPlayer(new Media(selectedFile.toURI().toString()));
         }
+        event.consume();
     }
 
     @FXML
@@ -474,28 +457,42 @@ public class ApplicationController extends BorderPane {
     Button pianoTest;
     @FXML
     HBox dropZone;
+    @FXML
+    HBox soundZone;
+    @FXML
+    Button guitarTest;
 
-    /*Button target = new Button(32, 32, "DROP HERE");
-        target.setScaleX(2.0);
-        target.setScaleY(2.0);
-    */
+    @FXML
+    MediaPlayer pianoPlayer;
+    @FXML
+    Media pianoMedia;
+
+    public void listenSound(MouseEvent onClicked) {
+        /*File file = new File("C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3");
+        Media media = new Media(file.toURI().toString());*/
+        pianoPlayer= new MediaPlayer(pianoMedia);
+        pianoPlayer.play();
+    }
 
     public void onDragDetected(MouseEvent onDragDetected) {
         /* drag was detected, start drag-and-drop gesture*/
-        System.out.println("onDragDetected");
-                /* allow any transfer mode */
-        Dragboard db = pianoTest.startDragAndDrop(TransferMode.ANY);
-                /* put a string on dragboard */
+        /* allow any transfer mode */
         ClipboardContent content = new ClipboardContent();
         content.putString(pianoTest.getText());
-        db.setContent(content);
+        if (pianoTest.isFocused() == true) {
+            Dragboard db = pianoTest.startDragAndDrop(TransferMode.ANY);
+            db.setContent(content);
+        }
 
+        else if (guitarTest.isFocused() == true) {
+            Dragboard db = guitarTest.startDragAndDrop(TransferMode.ANY);
+            db.setContent(content);
+        }
         onDragDetected.consume();
     }
 
     public void onDragOver(DragEvent onDragOver) {
         /* data is dragged over the target */
-        System.out.println("onDragOver");
         /* accept it only if it is  not dragged from the same node and if it has a string data */
         if (onDragOver.getGestureSource() != dropZone && onDragOver.getDragboard().hasString()) {
             /* allow for both copying and moving, whatever user chooses */
@@ -506,29 +503,24 @@ public class ApplicationController extends BorderPane {
 
     public void onDragEntered(DragEvent onDragEntered) {
         /* the drag-and-drop gesture entered the target */
-        System.out.println("onDragEntered");
         /* show to the user that it is an actual gesture target */
         if (onDragEntered.getGestureSource() != dropZone && onDragEntered.getDragboard().hasString()) {
-            //dropZone.setFill(Color.GREEN);
-            System.out.println("DragEntered success");
+            //do nothing
         }
         onDragEntered.consume();
     }
 
     public void onDragExited(DragEvent onDragExited) {
-        /* mouse moved away, remove the graphical cues */
-        System.out.println("DragExited");
+        // mouse moved away, do nothing
         onDragExited.consume();
     }
 
     public void onDragDropped(DragEvent onDragDropped) {
         /* data dropped */
-        System.out.println("onDragDropped");
-                /* if there is a string data on dragboard, read it and use it */
+        /* if there is a string data on dragboard, read it and use it */
         Dragboard db = onDragDropped.getDragboard();
         boolean success = false;
         if (db.hasString()) {
-            System.out.println("Drag Dropped success");
             success = true;
         }
         /* let the source know whether the string was successfully transferred and used */
@@ -538,256 +530,21 @@ public class ApplicationController extends BorderPane {
 
     public void onDragDone(DragEvent onDragDone) {
         /* the drag-and-drop gesture ended */
-        System.out.println("onDragDone");
         /* if the data was successfully moved, clear it */
-        if (onDragDone.getTransferMode() == TransferMode.MOVE) {
-            //pianoTest.setText("");
-            Button target = new Button(pianoTest.getText());
-            dropZone.getChildren().add(target);
+        if (onDragDone.getTransferMode() == TransferMode.MOVE && onDragDone.getDragboard().hasString()) {
+            if (pianoTest.isFocused() == true) {
+                Button target = new Button(pianoTest.getText());
+                dropZone.getChildren().add(target);
+            }
+
+            else if (guitarTest.isFocused() == true) {
+                Button target = new Button(guitarTest.getText());
+                dropZone.getChildren().add(target);
+            }
         }
         onDragDone.consume();
     }
 }
-
-    /*public void addSoundButton(Button b, HBox hbox) {
-        hbox.getChildren().add(b);
-    }
-
-    @FXML
-    private void initialize() {
-        buildNodeDragHandlers();
-    }
-
-    private EventHandler mContextDragOver;
-    private EventHandler mContextDragDropped;
-
-    public void buildNodeDragHandlers() {
-
-        //drag detection for node dragging
-        pianoTest.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                getParent().setOnDragOver(null);
-                getParent().setOnDragDropped(null);
-
-                getParent().setOnDragOver(mContextDragOver);
-                getParent().setOnDragDropped(mContextDragDropped);
-
-                //begin drag ops
-                mDragOffset = new Point2D(event.getX(), event.getY());
-
-                relocateToPoint(new Point2D(event.getSceneX(), event.getSceneY()));
-
-                ClipboardContent content = new ClipboardContent();
-                DragContainer container = new DragContainer();
-
-                container.addData("type", mType.toString());
-                content.put(DragContainer.DragNode, container);
-
-                startDragAndDrop(TransferMode.ANY).setContent(content);
-
-                event.consume();
-            }
-
-        });
-    }*/
-
-    /*@FXML
-    public void onMousePressed(MouseEvent onMousePressed) {
-        pianoTest.setMouseTransparent(true);
-        onMousePressed.setDragDetect(true);
-        System.out.println("onMousePressed");
-    }
-
-    @FXML
-    public void onMouseReleased(MouseEvent onMouseReleased) {
-        pianoTest.setMouseTransparent(false);
-        System.out.println("onMouseReleased");
-    }*/
-
-    /*@FXML
-    public void onDragDetected(MouseEvent onDragDetected) {
-        //String text = pianoTest.getText();
-        if(text == null || text.trim().equals("")){
-            onDragDetected.consume();
-            return;
-        }
-        Dragboard dragboard = pianoTest.startDragAndDrop(TransferMode.COPY_OR_MOVE);
-        ClipboardContent clipboardContent = new ClipboardContent();
-        clipboardContent.putString(text);
-        dragboard.setContent(clipboardContent);
-        System.out.println("onDragDetected");
-        // drag was detected, start a drag-and-drop gesture
-        // allow any transfer mode
-        Dragboard db = pianoTest.startDragAndDrop(TransferMode.ANY);
-        // Put a string on a dragboard
-        ClipboardContent content = new ClipboardContent();
-        content.putString(pianoTest.getText());
-        db.setContent(content);
-        System.out.println(pianoTest.getText());
-        System.out.println("onDragDetected");
-
-        onDragDetected.consume();
-    }*/
-
-    /*
-    @FXML
-    public void onMouseDragEntered(MouseDragEvent onMouseDragEntered) {
-        System.out.println("onDragEntered");
-    }*/
-
-    /*@FXML
-    public void onDragOver(DragEvent onDragOver) {
-        // data is dragged over the target
-        // accept it only if it is not dragged from the same node
-        // and if it has a string data
-        if (onDragOver.getGestureSource() != target && onDragOver.getDragboard().hasString()) {
-            // allow for both copying and moving, whatever user chooses
-            onDragOver.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-        }
-        System.out.println("onDragOver");
-        Dragboard dragboard = onDragOver.getDragboard();
-        if (dragboard.hasString()) {
-            onDragOver.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-            System.out.println("onDragOver");
-        }
-        onDragOver.consume();
-    }*/
-
-    /*@FXML
-    public void onMouseDragReleased(MouseDragEvent onMouseDragReleased) {
-        Button target = new Button();
-        target.setText(pianoTest.getText());
-        System.out.println("onMouseDragReleased");
-    }*/
-
-    //@FXML
-    //private void onDragDropped(DragEvent onDragDropped) {
-        /*// Transfer the data to the target
-        Dragboard dragboard = onDragDropped.getDragboard();
-        if (dragboard.hasString())
-        {
-            //Button target = new Button();
-            target.setVisible(true);
-            target.setText(dragboard.getString());
-            // Data transfer is successful
-            onDragDropped.setDropCompleted(true);
-            //System.out.println("onDragDropped");
-        }
-        else
-        {
-            // Data transfer is not successful
-            onDragDropped.setDropCompleted(false);
-        }*/
-
-         /* data dropped */
-        /* if there is a string data on dragboard, read it and use it */
-
-        /*Dragboard db = onDragDropped.getDragboard();
-        boolean success = false;
-        if (db.hasString()) {
-            dropZone.getChildren().add(target);
-            target.setText(db.getString());
-            success = true;
-        }
-        // let the source know whether the string was successfully
-        // transferred and used
-        onDragDropped.setDropCompleted(success);
-        System.out.println("onDragDropped");
-
-        onDragDropped.consume();*/
-    //}
-
-    /*@FXML
-    private void onDragDone(DragEvent onDragDone) {
-        /// Check how data was transfered to the target. If it was moved, clear the text in the source.
-        TransferMode modeUsed = onDragDone.getTransferMode();
-        if (modeUsed == TransferMode.MOVE)
-        {
-            pianoTest.setText("");
-        }
-
-        // the drag and drop gesture ended
-        // if the data was successfully moved, clear it
-        if (onDragDone.getTransferMode() == TransferMode.MOVE) {
-            pianoTest.setText("");
-        }
-        System.out.println("onDragDone");
-        onDragDone.consume();
-    }*/
-
-    /*@FXML
-    public void onMouseDragged(MouseEvent event) {
-        pianoTest.setLayoutX(event.getSceneX());
-        pianoTest.setLayoutY(event.getSceneY());
-    }*/
-
-    /*@FXML
-    public void onMouseDragExited(MouseDragEvent onMouseDragExited) {
-        Button target = new Button();
-        target.setOnMouseDragExited(new EventHandler <MouseDragEvent>()
-        {
-            public void handle(MouseDragEvent event)
-            {
-                System.out.println("onMouseDragExited");
-            }
-    });*/
-
-
-    /*@FXML
-    public void onDragDetected(MouseEvent onDragDetected) {
-        System.out.println("onDragDetected");
-        Dragboard dragboard = pianoButton.startDragAndDrop(TransferMode.COPY);
-        dragboard.setDragView(pianoButton.snapshot(null, null));
-        ClipboardContent content = new ClipboardContent();
-        //content.putImage()
-        dragboard.setContent(content);
-
-        onDragDetected.consume();
-    }
-
-    @FXML
-    public void onDragOver(DragEvent onDragOver) {
-        System.out.println("onDragOver");
-        if(onDragOver.getGestureSource() != musicPane && onDragOver.getDragboard().hasImage()) {
-            onDragOver.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-        }
-        onDragOver.consume();
-    }
-
-    @FXML
-    public void onDragEntered(DragEvent onDragEntered) {
-        System.out.println("onDragEntered");
-        if(onDragEntered.getGestureSource() != musicPane && onDragEntered.getDragboard().hasImage()) {
-            //mvPane.set
-        }
-    }*/
-
-    /*double orgSceneX, orgSceneY;
-    double orgTranslateX, orgTranslateY;
-
-    @FXML
-    public void onMousePressed(MouseEvent onMousePressed) {
-        //pianoButton.startDragAndDrop(TransferMode.COPY);
-        orgSceneX = onMousePressed.getSceneX();
-        orgSceneY = onMousePressed.getSceneY();
-        orgTranslateX = ((MenuButton) (onMousePressed.getSource())).getTranslateX();
-        orgTranslateY = ((MenuButton) (onMousePressed.getSource())).getTranslateY();
-
-        ((MenuButton) (onMousePressed.getSource())).toFront();
-    }
-
-    @FXML
-    public void onMouseDragged(MouseEvent onMouseDragged) {
-        double offsetX = onMouseDragged.getSceneX() - orgSceneX;
-        double offsetY = onMouseDragged.getSceneY() - orgSceneY;
-        double newTranslateX = orgTranslateX + offsetX;
-        double newTranslateY = orgTranslateY + offsetY;
-
-        ((MenuButton) (onMouseDragged.getSource())).setTranslateX(newTranslateX);
-        ((MenuButton) (onMouseDragged.getSource())).setTranslateY(newTranslateY);
-    }*/
 
     /*@FXML
     MenuItem doPiano;
