@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -23,8 +24,6 @@ public class RegisterController extends AnchorPane{
     @FXML
     Stage registerStage;
 
-    @FXML
-    Button registerValidation;
     @FXML
     TextField surname;
     @FXML
@@ -71,7 +70,16 @@ public class RegisterController extends AnchorPane{
     }
 
     @FXML
-    public void openApplication(ActionEvent onMouseClicked) throws Exception {
+    Button registerValidation;
+
+    @FXML
+    public void validationEnter (MouseEvent onMouseEntered) { registerValidation.setStyle("-fx-background-color: green"); }
+
+    @FXML
+    public void validationExit (MouseEvent onMouseExited) { registerValidation.setStyle("-fx-background-color: #0489B1"); }
+
+    @FXML
+    public void openApplication(MouseEvent onMouseClicked) throws Exception {
         //String birthdateRegex = "^(\\d{2})\\/(\\d{2})\\/(\\d{4})";
         if (surname.getText().length() != 0 && firstname.getText().length() != 0
             && registerLogin.getText().length() != 0 && verifyLogin(registerLogin.getText()) == true
@@ -150,6 +158,12 @@ public class RegisterController extends AnchorPane{
         registerStage = (Stage) registerAnnulation.getScene().getWindow();
         registerStage.close();
     }
+
+    @FXML
+    public void annulationEnter (MouseEvent onMouseEntered) { registerAnnulation.setStyle("-fx-background-color: red"); }
+
+    @FXML
+    public void annulationExit (MouseEvent onMouseExited) { registerAnnulation.setStyle("-fx-background-color: #0489B1"); }
 
     @FXML
     Button connection;

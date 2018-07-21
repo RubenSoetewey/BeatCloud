@@ -38,12 +38,12 @@
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="connectValidation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" onAction="#openApplication" >
+      <Button fx:id="connectValidation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" onMouseExited="#validationExit" onMouseEntered="#validationEnter" onMouseClicked="#openApplication" >
           <font>
               <Font name="System Bold" size="12.0" />
           </font>
       </Button>
-      <Button fx:id="connectAnnulation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" onAction="#closeWindow" >
+      <Button fx:id="connectAnnulation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" onMouseEntered="#annulationEnter" onMouseExited="#annulationExit" onMouseClicked="#closeWindow" >
           <font>
               <Font name="System Bold" size="12.0" />
           </font>

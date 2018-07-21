@@ -19,6 +19,7 @@
 <?import javafx.scene.media.MediaPlayer?>
 <?import javafx.scene.media.MediaView?>
 
+<?import javafx.scene.text.Font?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.ApplicationController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -87,7 +88,7 @@
                         <Image requestedHeight="400.0" requestedWidth="700.0" url="@../Photo/music-.jpg" />
                     </image>
                 </ImageView>
-                <MediaView fx:id="mainView" fitHeight="400.0" fitWidth="700.0">
+                <MediaView fx:id="mainView" fitHeight="400.0" fitWidth="700.0" >
                     <mediaPlayer>
                         <MediaPlayer fx:id="mainPlayer" autoPlay="false">
                             <media>
@@ -108,7 +109,6 @@
                                 <ImageView fitHeight="32" fitWidth="32">
                                     <image>
                                         <Image fx:id="play" url="@../Photo/play.jpg" />
-                                        <Image fx:id="pause" url="@../Photo/pause.jpg" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -143,108 +143,44 @@
         <HBox fx:id="soundZone" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
             <padding><Insets topRightBottomLeft="50" /></padding>
             <children>
-            <Button fx:id="pianoTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" text="pianoTest">
+            <Button fx:id="pianoTest" text="pianoTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
                 <graphic>
-                    <Pane>
-                        <children>
-                            <MediaView fitWidth="50" fitHeight="1" visible="false">
-                                <mediaPlayer>
-                                    <MediaPlayer fx:id="pianoPlayer" autoPlay="false">
-                                        <media>
-                                            <Media fx:id="pianoMedia" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv"/>
-                                        </media>
-                                    </MediaPlayer>
-                                </mediaPlayer>
-                            </MediaView>
-                        </children>
-                    </Pane>
+                    <ImageView>
+                        <image>
+                            <Image url="@../Photo/music.png" requestedHeight="30" requestedWidth="45"/>
+                        </image>
+                    </ImageView>
                 </graphic>
+                <Pane>
+                    <children>
+                        <MediaView fitWidth="50" fitHeight="1" visible="false">
+                            <mediaPlayer>
+                                <MediaPlayer fx:id="pianoPlayer" autoPlay="false">
+                                    <media>
+                                        <Media fx:id="pianoMedia" source="@../Music/test.wav"/>
+                                    </media>
+                                </MediaPlayer>
+                            </mediaPlayer>
+                        </MediaView>
+                    </children>
+                </Pane>
             </Button>
-            <Button fx:id="guitarTest" onDragDetected="#onDragDetected" onDragDone="#onDragDone" text="guitarTest"/>
-            <MenuButton fx:id="pianoButton">
-                <graphic>
-                    <ImageView fitHeight="80" fitWidth="80">
-                        <image>
-                            <Image url="@../Photo/piano.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-              <items>
-                  <MenuItem fx:id="doPiano" text="Do">
-                     <graphic>
-                        <Button fx:id="playPiano1" >
-                           <graphic>
-                              <ImageView fitHeight="10.0" fitWidth="10.0">
-                                  <image>
-                                      <Image url="@../Photo/play.jpg" />
-                                  </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </graphic>
-                  </MenuItem>
-                  <MenuItem fx:id="rePiano" text="Re" />
-                  <MenuItem fx:id="miPiano" text="Mi" />
-                  <MenuItem fx:id="faPiano" text="Fa" />
-                  <MenuItem fx:id="solPiano" text="Sol" />
-                  <MenuItem fx:id="laPiano" text="La" />
-                  <MenuItem fx:id="siPiano" text="Si" />
-              </items>
-            </MenuButton>
-            <MenuButton fx:id="drumsButton" >
-                <graphic>
-                    <ImageView fitHeight="80" fitWidth="80">
-                        <image>
-                            <Image url="@../Photo/drums.jpg" />
-                        </image>
-                    </ImageView>
-                </graphic>
-              <items>
-                  <MenuItem fx:id="doDrums" text="Do" />
-                  <MenuItem fx:id="reDrums"  text="Re" />
-                  <MenuItem fx:id="miDrums" text="Mi" />
-                  <MenuItem fx:id="faDrums" text="Fa" />
-                  <MenuItem fx:id="solDrums" text="Sol" />
-                  <MenuItem fx:id="laDrums" text="La" />
-                  <MenuItem fx:id="siDrums" text="Si" />
-              </items>
-            </MenuButton>
-            <MenuButton fx:id="guitarButton" >
-                <graphic>
-                    <ImageView fitHeight="80" fitWidth="80">
-                        <image>
-                            <Image url="@../Photo/guitar.jpg" />
-                        </image>
-                    </ImageView>
-                </graphic>
-              <items>
-                  <MenuItem fx:id="doGuitar" text="Do" />
-                  <MenuItem fx:id="reGuitar" text="Re" />
-                  <MenuItem fx:id="miGuitar" text="Mi" />
-                  <MenuItem fx:id="faGuitar" text="Fa" />
-                  <MenuItem fx:id="solGuitar" text="Sol" />
-                  <MenuItem fx:id="laGuitar" text="La" />
-                  <MenuItem fx:id="siGuitar" text="Si" />
-              </items>
-            </MenuButton>
-            <MenuButton fx:id="violinButton" >
-                <graphic>
-                    <ImageView fitHeight="80" fitWidth="80">
-                        <image>
-                            <Image url="@../Photo/violin.jpg" />
-                        </image>
-                    </ImageView>
-                </graphic>
-              <items>
-                  <MenuItem fx:id="doViolin" text="Do" />
-                  <MenuItem fx:id="reViolin" text="Re" />
-                  <MenuItem fx:id="miViolin" text="Mi" />
-                  <MenuItem fx:id="faViolin" text="Fa" />
-                  <MenuItem fx:id="solViolin" text="Sol" />
-                  <MenuItem fx:id="laViolin" text="La" />
-                  <MenuItem fx:id="siViolin" text="Si" />
-              </items>
-            </MenuButton>
+            <Button fx:id="guitarTest" text="guitarTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
+                <MediaView fitWidth="50" fitHeight="1" visible="false">
+                    <mediaPlayer>
+                        <MediaPlayer fx:id="guitarPlayer" autoPlay="false">
+                            <media>
+                                <Media fx:id="guitarMedia" source="@../Music/do.wav"/>
+                            </media>
+                        </MediaPlayer>
+                    </mediaPlayer>
+                </MediaView>
+            </Button>
+            <Button fx:id="validMusic" style="-fx-background-color: yellow" textFill="black" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Valider la compilation" onMouseEntered="#validMusicEnter" onMouseExited="#validMusicExit" >
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
             </children>
         </HBox>
     </bottom>

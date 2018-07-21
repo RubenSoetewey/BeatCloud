@@ -7,11 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.util.Optional;
 
 public class ConnectionController extends AnchorPane{
@@ -19,13 +21,20 @@ public class ConnectionController extends AnchorPane{
     Stage connectionStage;
 
     @FXML
-    Button connectValidation;
-    @FXML
     TextField connectLogin;
     @FXML
     PasswordField connectPassword;
+
     @FXML
-    public void openApplication(ActionEvent onMouseClicked) throws Exception {
+    Button connectValidation;
+    @FXML
+    public void validationEnter (MouseEvent onMouseEntered) { connectValidation.setStyle("-fx-background-color: green"); }
+
+    @FXML
+    public void validationExit (MouseEvent onMouseExited) { connectValidation.setStyle("-fx-background-color: #0489B1"); }
+
+    @FXML
+    public void openApplication(MouseEvent onMouseClicked) throws Exception {
         if (connectLogin.getText().length() != 0 && connectPassword.getText().length() != 0) {
             FXMLLoader loaderApplication = new FXMLLoader();
             loaderApplication.setLocation(Main.class.getResource("Fxml/application.fxml"));
@@ -54,7 +63,15 @@ public class ConnectionController extends AnchorPane{
     @FXML
     Button connectAnnulation;
     @FXML
-    public void closeWindow (ActionEvent onMouseClicked){
+    public void annulationEnter (MouseEvent onMouseEntered) {
+        connectAnnulation.setStyle("-fx-background-color: red");
+    }
+
+    @FXML
+    public void annulationExit (MouseEvent onMouseExited) { connectAnnulation.setStyle("-fx-background-color: #0489B1"); }
+
+    @FXML
+    public void closeWindow (MouseEvent onMouseClicked){
         connectionStage = (Stage) connectAnnulation.getScene().getWindow();
         connectionStage.close();
     }

@@ -47,12 +47,12 @@
                 <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
         </VBox>
-        <Button fx:id="registerValidation" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="600.0" onAction="#openApplication" style="-fx-background-color: #0489B1" text="Valider" textFill="white">
+        <Button fx:id="registerValidation" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="600.0" onMouseExited="#validationExit" onMouseEntered="#validationEnter" onMouseClicked="#openApplication" style="-fx-background-color: #0489B1" text="Valider" textFill="white">
         <font>
             <Font name="System Bold" size="12.0" />
         </font>
         </Button>
-        <Button fx:id="registerAnnulation" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="600.0" onAction="#closeWindow" style="-fx-background-color: #0489B1" text="Annuler" textFill="white">
+        <Button fx:id="registerAnnulation" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="600.0"  onMouseExited="#annulationExit" onMouseEntered="#annulationEnter" onMouseClicked="#closeWindow" style="-fx-background-color: #0489B1" text="Annuler" textFill="white">
         <font>
             <Font name="System Bold" size="12.0" />
         </font>

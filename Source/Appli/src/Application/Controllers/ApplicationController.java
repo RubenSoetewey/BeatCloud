@@ -29,10 +29,9 @@ public class ApplicationController extends BorderPane {
     @FXML
     Stage primaryStage;
 
-    //Files
+    ///////////////////////Files///////////////////////////////////////
     @FXML
     MenuItem newFile;
-
     @FXML
     public void createNewFile(ActionEvent event) {
         FileChooser fileChoosed = new FileChooser();
@@ -54,7 +53,6 @@ public class ApplicationController extends BorderPane {
 
     @FXML
     MenuItem openFile;
-
     @FXML
     public void openFile(final ActionEvent event) {
         FileChooser fileChoosed = new FileChooser();
@@ -69,11 +67,11 @@ public class ApplicationController extends BorderPane {
             //System.out.println("You chose to open this file: " + fileChoosed.getTitle());//.getSelectedFile().getName());
             //mainStage.display(selectedFile);
         }
+        event.consume();
     }
 
     @FXML
     MenuItem saveFile;
-
     @FXML
     public void saveFile(ActionEvent event) {
         FileChooser fileChoosed = new FileChooser();
@@ -88,9 +86,10 @@ public class ApplicationController extends BorderPane {
             //System.out.println("You chose to open this file: " + fileChoosed.getTitle());//.getSelectedFile().getName());
             //mainStage.display(selectedFile);
         }
+        event.consume();
     }
 
-    //Media
+    ///////////////////////////Media////////////////////////////////////////
     @FXML
     MediaView mainView;
     @FXML
@@ -99,8 +98,6 @@ public class ApplicationController extends BorderPane {
     Media mainMedia;
     @FXML
     Image play;
-    @FXML
-    Image pause;
     @FXML
     Duration duration;
     @FXML
@@ -127,8 +124,7 @@ public class ApplicationController extends BorderPane {
         //this.mainPlayer = player;
         setStyle("-fx-background-color: white;");
         mainView = new MediaView(mainPlayer);
-        musicPane = new Pane() {
-        };
+        musicPane = new Pane() {        };
         musicPane.getChildren().add(mainView);
         musicPane.setStyle("-fx-background-color: black;");
         setCenter(musicPane);
@@ -272,7 +268,7 @@ public class ApplicationController extends BorderPane {
             //playButton.setGraphic(new ImageView(play));
             mainPlayer.play();
         } else {
-            //playButton.setGraphic(new ImageView(pause));
+            //playButton.setGraphic(new ImageView(new Image("@Photo/pause.jpg")));
             mainPlayer.pause();
         }
     }
@@ -450,28 +446,43 @@ public class ApplicationController extends BorderPane {
         }
     }*/
 
-    //Instruments
-    @FXML
-    MenuButton pianoButton;
-    @FXML
-    Button pianoTest;
     @FXML
     HBox dropZone;
     @FXML
-    HBox soundZone;
+    Button validMusic;
     @FXML
-    Button guitarTest;
+    public void validMusicEnter (MouseEvent onMouseEntered) { validMusic.setStyle("-fx-background-color: green"); }
+    @FXML
+    private void validMusicExit (MouseEvent onMouseExited) { validMusic.setStyle("-fx-background-color: darkturquoise"); }
 
+    @FXML
+    HBox soundZone;
+
+    @FXML
+    Button pianoTest;
     @FXML
     MediaPlayer pianoPlayer;
     @FXML
     Media pianoMedia;
 
+    @FXML
+    Button guitarTest;
+    @FXML
+    MediaPlayer guitarPlayer;
+    @FXML
+    Media guitarMedia;
+
     public void listenSound(MouseEvent onClicked) {
         /*File file = new File("C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3");
         Media media = new Media(file.toURI().toString());*/
-        pianoPlayer= new MediaPlayer(pianoMedia);
-        pianoPlayer.play();
+        if (pianoTest.isFocused() == true) {
+            pianoPlayer = new MediaPlayer(pianoMedia);
+            pianoPlayer.play();
+        }
+        else if(guitarTest.isFocused() == true) {
+            guitarPlayer = new MediaPlayer(guitarMedia);
+            guitarPlayer.play();
+        }
     }
 
     public void onDragDetected(MouseEvent onDragDetected) {
@@ -545,80 +556,3 @@ public class ApplicationController extends BorderPane {
         onDragDone.consume();
     }
 }
-
-    /*@FXML
-    MenuItem doPiano;
-    @FXML
-    public void handleDoPiano(ActionEvent event){
-        System.out.println("doPiano ok");
-        String sound = "C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3";
-        Media piano1 = new Media(new File(sound).toURI().toString());
-        MediaPlayer piano1Player = new MediaPlayer(piano1);
-        piano1Player.setVolume(40.0);
-        Status status = piano1Player.getStatus();
-        if(status == Status.UNKNOWN || status == Status.HALTED){
-            return;
-        }
-        if (status == Status.READY)
-        {
-            piano1Player.play();
-        }
-    }*/
-
-    /*@FXML
-    Button playPiano1;
-    @FXML
-    Media piano;
-    @FXML
-    MediaPlayer piano1Player;
-    @FXML
-    MediaView piano1View;*/
-
-    //@FXML
-    //public void listenSound(ActionEvent pressed) {
-        /*String sound = "C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3";
-        Media piano1 = new Media(new File(sound).toURI().toString());
-        MediaPlayer piano1Player = new MediaPlayer(piano1);
-        piano1Player.setVolume(40.0);
-        Status status = piano1Player.getStatus();
-        if(status == Status.UNKNOWN || status == Status.HALTED){
-            return;
-        }
-        if (status == Status.READY)
-        {
-            piano1Player.play();
-        }*/
-
-        /*piano = new Media(new File("Music/test.mp3").toURI().toString());//Main.class.getClass().getResourceAsStream("Music/test.mp3"));
-        piano1Player = new MediaPlayer(piano);
-        piano1Player.setVolume(1);
-        piano1View = new MediaView(piano1Player);
-        piano1Player.play();
-
-        System.out.println("kikou");*/
-
-    //}
-//}
-
- /*@FXML
-    FileController fileController;
-    @FXML
-    MediaController mediaController;
-
-    @FXML
-    public void initialize() {
-        System.out.println("Application started");
-        fileController.init(this);
-        mediaController.init(this);
-    }
-
-    public void ApplicationController() {
-        //this.mainPlayer = player;
-        mediaController = new MediaController(mainPlayer);
-
-        fileController = new FileController();
-        newFile.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                fileController.createNewFile(e);
-            }
-    });*/
