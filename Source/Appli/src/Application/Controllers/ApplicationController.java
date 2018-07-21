@@ -1,7 +1,9 @@
 package Application.Controllers;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.*;
@@ -23,6 +25,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.media.MediaPlayer.Status;
 
+import javax.swing.*;
 import java.io.File;
 
 public class ApplicationController extends BorderPane {
@@ -37,7 +40,7 @@ public class ApplicationController extends BorderPane {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Create new file");
         fileChoosed.setInitialDirectory(new File(System.getProperty("user.home")  + "/Desktop")); //position on desktop
-        fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("WAV Files", "*.wav"), new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"));
+        fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("WAV Files", "*.wav"));
         newFile.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
         File selectedFile = fileChoosed.showSaveDialog(primaryStage);
         if (selectedFile != null) {
@@ -448,12 +451,20 @@ public class ApplicationController extends BorderPane {
 
     @FXML
     HBox dropZone;
+
     @FXML
     Button validMusic;
     @FXML
     public void validMusicEnter (MouseEvent onMouseEntered) { validMusic.setStyle("-fx-background-color: green"); }
     @FXML
     private void validMusicExit (MouseEvent onMouseExited) { validMusic.setStyle("-fx-background-color: darkturquoise"); }
+
+    @FXML
+    Button deleteSound;
+    @FXML
+    public void deleteMusicEnter(MouseEvent onMouseEntered) { deleteSound.setStyle("-fx-background-color: red"); }
+    @FXML
+    public void deleteMusicExit(MouseEvent onMouseExited) { deleteSound.setStyle("-fx-background-color: darkturquoise"); }
 
     @FXML
     HBox soundZone;
@@ -472,9 +483,8 @@ public class ApplicationController extends BorderPane {
     @FXML
     Media guitarMedia;
 
+    @FXML
     public void listenSound(MouseEvent onClicked) {
-        /*File file = new File("C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3");
-        Media media = new Media(file.toURI().toString());*/
         if (pianoTest.isFocused() == true) {
             pianoPlayer = new MediaPlayer(pianoMedia);
             pianoPlayer.play();
@@ -485,16 +495,22 @@ public class ApplicationController extends BorderPane {
         }
     }
 
+    @FXML
+    public void deleteSound(MouseEvent onClicked) {
+        //dropZone.getChildren().remove(0)
+        System.out.println("kikou");
+        dropZone.getChildren().remove(0); //marche uniquement pour le premier pour l'instant
+    }
+
+    @FXML
     public void onDragDetected(MouseEvent onDragDetected) {
         /* drag was detected, start drag-and-drop gesture*/
-        /* allow any transfer mode */
         ClipboardContent content = new ClipboardContent();
         content.putString(pianoTest.getText());
         if (pianoTest.isFocused() == true) {
-            Dragboard db = pianoTest.startDragAndDrop(TransferMode.ANY);
+            Dragboard db = pianoTest.startDragAndDrop(TransferMode.ANY); //allow any transfer mode
             db.setContent(content);
         }
-
         else if (guitarTest.isFocused() == true) {
             Dragboard db = guitarTest.startDragAndDrop(TransferMode.ANY);
             db.setContent(content);
@@ -502,9 +518,10 @@ public class ApplicationController extends BorderPane {
         onDragDetected.consume();
     }
 
+    @FXML
     public void onDragOver(DragEvent onDragOver) {
         /* data is dragged over the target */
-        /* accept it only if it is  not dragged from the same node and if it has a string data */
+        /* accept it only if it isn't dragged from the same node and if it has a string data */
         if (onDragOver.getGestureSource() != dropZone && onDragOver.getDragboard().hasString()) {
             /* allow for both copying and moving, whatever user chooses */
             onDragOver.acceptTransferModes(TransferMode.COPY_OR_MOVE);
@@ -512,6 +529,7 @@ public class ApplicationController extends BorderPane {
         onDragOver.consume();
     }
 
+    @FXML
     public void onDragEntered(DragEvent onDragEntered) {
         /* the drag-and-drop gesture entered the target */
         /* show to the user that it is an actual gesture target */
@@ -521,11 +539,13 @@ public class ApplicationController extends BorderPane {
         onDragEntered.consume();
     }
 
+    @FXML
     public void onDragExited(DragEvent onDragExited) {
         // mouse moved away, do nothing
         onDragExited.consume();
     }
 
+    @FXML
     public void onDragDropped(DragEvent onDragDropped) {
         /* data dropped */
         /* if there is a string data on dragboard, read it and use it */
@@ -539,6 +559,7 @@ public class ApplicationController extends BorderPane {
         onDragDropped.consume();
     }
 
+    @FXML
     public void onDragDone(DragEvent onDragDone) {
         /* the drag-and-drop gesture ended */
         /* if the data was successfully moved, clear it */
