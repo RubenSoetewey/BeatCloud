@@ -479,6 +479,7 @@ public class ApplicationController extends BorderPane {
             }
         }
     }
+    @FXML
     Button deleteSound;
     @FXML
     public void deleteMusicEnter(MouseEvent onMouseEntered) { deleteSound.setStyle("-fx-background-color: red"); }
@@ -495,10 +496,10 @@ public class ApplicationController extends BorderPane {
     @FXML
     Media pianoMedia;
 
-    @FXML
-    Button guitarTest;
-    @FXML
-    MediaPlayer guitarPlayer;
+    //@FXML
+    //BCButton guitarTest;
+    //@FXML
+    //MediaPlayer guitarPlayer;
     @FXML
     Media guitarMedia;
 
@@ -527,7 +528,7 @@ public class ApplicationController extends BorderPane {
     public void onDragDetected(MouseEvent onDragDetected) {
         /* drag was detected, start drag-and-drop gesture*/
         ClipboardContent content = new ClipboardContent();
-        content.putString(pianoTest.getText());
+       /* content.putString(pianoTest.getText());
         if (pianoTest.isFocused() == true) {
             Dragboard db = pianoTest.startDragAndDrop(TransferMode.ANY); //allow any transfer mode
             db.setContent(content);
@@ -535,7 +536,12 @@ public class ApplicationController extends BorderPane {
         else if (guitarTest.isFocused() == true) {
             Dragboard db = guitarTest.startDragAndDrop(TransferMode.ANY);
             db.setContent(content);
-        }
+        }*/
+
+        content.putString(((BCButton)onDragDetected.getSource()).getText());
+        Dragboard db = ((BCButton)onDragDetected.getSource()).startDragAndDrop(TransferMode.ANY);
+        db.setContent(content);
+
         onDragDetected.consume();
     }
 
@@ -586,7 +592,7 @@ public class ApplicationController extends BorderPane {
         /* the drag-and-drop gesture ended */
         /* if the data was successfully moved, clear it */
         if (onDragDone.getTransferMode() == TransferMode.MOVE && onDragDone.getDragboard().hasString()) {
-            if (pianoTest.isFocused() == true) {
+           /* if (pianoTest.isFocused() == true) {
                 Button target = new Button(pianoTest.getText());
                 dropZone.getChildren().add(target);
             }
@@ -594,8 +600,23 @@ public class ApplicationController extends BorderPane {
             else if (guitarTest.isFocused() == true) {
                 Button target = new Button(guitarTest.getText());
                 dropZone.getChildren().add(target);
-            }
+            }*/
+            BCButton target = new BCButton(((BCButton)onDragDone.getSource()).associatedFile,((BCButton)onDragDone.getSource()).getText());
+            dropZone.getChildren().add(target);
         }
         onDragDone.consume();
+    }
+
+    public void importFile(ActionEvent actionEvent) {
+        FileChooser fileChoosed = new FileChooser();
+        fileChoosed.setTitle("Open file");
+        fileChoosed.setInitialDirectory(new File("./"));
+        fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Audio Files", "*.wav"));
+        openFile.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
+        File selectedFile = fileChoosed.showOpenDialog(primaryStage);
+        if (selectedFile != null) {
+            soundZone.getChildren().add(new BCButton(selectedFile.getAbsoluteFile().toString(),selectedFile.getName()));
+        }
+        actionEvent.consume();
     }
 }

@@ -74,11 +74,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ApplicationController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ApplicationController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8332">
-              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+            <state relative-caret-position="288">
+              <caret line="617" column="94" selection-start-line="617" selection-start-column="94" selection-end-line="617" selection-end-column="94" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5539#5540#0" expanded="true" />
+                <element signature="e#5585#5586#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,8 +112,12 @@
       <file leaf-file-name="BCButton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Application/Util/BCButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            <state relative-caret-position="75">
+              <caret line="5" column="32" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="32" />
+              <folding>
+                <element signature="e#152#153#0" expanded="true" />
+                <element signature="e#175#176#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,18 +125,39 @@
       <file leaf-file-name="application.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Application/Fxml/application.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="170" column="52" selection-start-line="170" selection-start-column="52" selection-end-line="170" selection-end-column="52" />
+            <state relative-caret-position="274">
+              <caret line="43" column="74" lean-forward="true" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file leaf-file-name="SoundMixer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClassLoaders.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/loader/ClassLoaders.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="650">
+              <caret line="189" selection-start-line="189" selection-end-line="189" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuiltinClassLoader.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/loader/BuiltinClassLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="579" selection-start-line="579" selection-end-line="579" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SoundMixer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,10 +174,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>open</find>
-      <find>mediac</find>
-      <find>mediacontrol</find>
-      <find>Image</find>
       <find>SAVEFILE</find>
       <find>stop</find>
       <find>musicPane</find>
@@ -174,6 +200,10 @@
       <find>setdr</find>
       <find>drop</find>
       <find>DROPZONE</find>
+      <find>guitarPlayer</find>
+      <find>MenuItem</find>
+      <find>guitarPl</find>
+      <find>Import</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -201,6 +231,8 @@
         <option value="$PROJECT_DIR$/src/Application/Fxml/register.fxml" />
         <option value="$PROJECT_DIR$/src/Application/Controllers/ConnectionController.java" />
         <option value="$PROJECT_DIR$/src/Application/Controllers/RegisterController.java" />
+        <option value="$PROJECT_DIR$/src/Application/Util/SoundMixer.java" />
+        <option value="$PROJECT_DIR$/src/Application/Util/BCButton.java" />
         <option value="$PROJECT_DIR$/src/Application/Fxml/application.fxml" />
         <option value="$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java" />
       </list>
@@ -443,14 +475,15 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="235304000" />
+    <option name="totallyTimeSpent" value="238942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.31417114" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.31417114" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -458,14 +491,14 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28877005" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28877005" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.56920075" visible="true" weight="0.20703125" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.56954885" visible="true" weight="0.20703125" />
       <window_info anchor="right" id="Database" order="3" weight="0.1595059" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.328877" />
-      <window_info id="Structure" order="1" sideWeight="0.43079922" side_tool="true" visible="true" weight="0.20703125" />
+      <window_info id="Structure" order="1" sideWeight="0.43045112" side_tool="true" visible="true" weight="0.20703125" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="4" />
@@ -530,7 +563,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="85" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/loader/BuiltinClassLoader.java</url>
+          <line>579</line>
+          <properties />
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -544,9 +585,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../Application/src/sample/MediaControl.java" />
-    <entry file="file://$PROJECT_DIR$/src/Application/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/Application/Connection.java" />
     <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.base/java/lang/Runnable.java" />
     <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/javafx.graphics/com/sun/glass/ui/InvokeLaterDispatcher.java" />
     <entry file="file://$PROJECT_DIR$/src/Application/test.fxml" />
@@ -612,16 +650,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Application/Controllers/ConnectionController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -632,13 +660,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Fxml/application.fxml">
+    <entry file="file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="170" column="52" selection-start-line="170" selection-start-column="52" selection-end-line="170" selection-end-column="52" />
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/loader/BuiltinClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="579" selection-start-line="579" selection-end-line="579" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/loader/ClassLoaders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="189" selection-start-line="189" selection-end-line="189" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/javafx.fxml/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -647,17 +701,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java">
+    <entry file="file://$PROJECT_DIR$/src/Application/Util/BCButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8332">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        <state relative-caret-position="75">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <element signature="e#152#153#0" expanded="true" />
+            <element signature="e#175#176#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java">
+    <entry file="file://$PROJECT_DIR$/src/Application/Fxml/application.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        <state relative-caret-position="274">
+          <caret line="43" column="74" lean-forward="true" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="617" column="94" selection-start-line="617" selection-start-column="94" selection-end-line="617" selection-end-column="94" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5539#5540#0" expanded="true" />
+            <element signature="e#5585#5586#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -8,11 +8,13 @@ import java.io.SequenceInputStream;
 import jm.util.*;
 
 public class SoundMixer {
+
+
     public void concatWav(String wavFile1,String wavFile2,String resultName) throws FileNotFoundException, IOException{
         FileInputStream fistream1 = new FileInputStream(wavFile1);  // first source file
         FileInputStream fistream2 = new FileInputStream(wavFile2);//second source file
         SequenceInputStream sistream = new SequenceInputStream(fistream1, fistream2);
-        FileOutputStream fostream = new FileOutputStream("D://merge1.mp3");//destinationfile
+        FileOutputStream fostream = new FileOutputStream(resultName);//destinationfile
 
         int temp;
 
@@ -27,7 +29,7 @@ public class SoundMixer {
         fistream2.close();
     }
 
-    public void mixWav(String wavFile1,String wavFile2){
+    public void mixWav(String wavFile1,String wavFile2,String resultName){
         float[] part1;
         float[] part2;
         float[] mixedPart;
@@ -42,7 +44,7 @@ public class SoundMixer {
             mixedPart = mix(part2,part1);
         }
 
-        Write.audio(mixedPart, "mixed.aif",4,22050,8);
+        Write.audio(mixedPart, resultName,4,22050,8);
     }
 
     private float[] mix(float[] longest,float[] shortest){

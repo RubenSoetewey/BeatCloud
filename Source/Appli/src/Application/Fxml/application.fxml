@@ -20,6 +20,8 @@
 <?import javafx.scene.media.MediaView?>
 
 <?import javafx.scene.text.Font?>
+
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.ApplicationController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
@@ -39,7 +41,7 @@
                         <SeparatorMenuItem />
                         <Menu text="Importer...">
                             <items>
-                                <MenuItem text="Média..." />
+                                <MenuItem text="Média..." onAction="#importFile"/>
                             </items>
                         </Menu>
                         <MenuItem text="Préférences" />
@@ -165,17 +167,17 @@
                     </children>
                 </Pane>
             </Button>
-            <Button fx:id="guitarTest" text="guitarTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
-                <MediaView fitWidth="50" fitHeight="1" visible="false">
-                    <mediaPlayer>
-                        <MediaPlayer fx:id="guitarPlayer" autoPlay="false">
-                            <media>
-                                <Media fx:id="guitarMedia" source="@../Music/do.wav"/>
-                            </media>
-                        </MediaPlayer>
-                    </mediaPlayer>
-                </MediaView>
-            </Button>
+                <!-- <Application.Util.BCButton fx:id="guitarTest" text="guitarTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
+                       <MediaView fitWidth="50" fitHeight="1" visible="false">
+                           <mediaPlayer>
+                               <MediaPlayer fx:id="guitarPlayer" autoPlay="false">
+                                   <media>
+                                       <Media fx:id="guitarMedia" source="@../Music/do.wav"/>
+                                   </media>
+                               </MediaPlayer>
+                           </mediaPlayer>
+                       </MediaView>
+                </Application.Util.BCButton > -->
             <Button fx:id="validMusic" style="-fx-background-color: yellow" textFill="black" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Valider la compilation" onMouseEntered="#validMusicEnter" onMouseExited="#validMusicExit" >
                 <font>
                     <Font name="System Bold" size="12.0" />
