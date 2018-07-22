@@ -16,16 +16,12 @@
 <AnchorPane prefHeight="450.0" prefWidth="500.0" style="-fx-background-color: #0B3861" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.ConnectionController">
    <children>
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="20.0">
-         <image>
-            <Image url="@../Photo/Logo.png" />
-         </image>
+         <image><Image url="@../Photo/Logo.png" /></image>
       </ImageView>
       <VBox layoutY="100.0" prefHeight="450.0" prefWidth="500.0" spacing="5.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="604.0" text="Bienvenue sur Beatcloud !" textAlignment="JUSTIFY" textFill="skyblue">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
+               <font><Font name="System Bold" size="18.0" /></font>
             </Label>
             <Label text="Login: " textFill="skyblue" />
             <TextField fx:id="connectLogin" />
@@ -38,21 +34,15 @@
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="connectValidation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" onMouseExited="#validationExit" onMouseEntered="#validationEnter" onMouseClicked="#openApplication" >
-          <font>
-              <Font name="System Bold" size="12.0" />
-          </font>
+      <Button fx:id="connectValidation" style="-fx-background-color: #0489B1; -fx-text-fill: white" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="340.0" text="Valider" onMouseExited="#validationExit" onMouseEntered="#validationEnter" onMouseClicked="#openApplication">
+      <font><Font name="System Bold" size="12.0" /></font>
       </Button>
-      <Button fx:id="connectAnnulation" style="-fx-background-color: #0489B1" textFill="white" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" onMouseEntered="#annulationEnter" onMouseExited="#annulationExit" onMouseClicked="#closeWindow" >
-          <font>
-              <Font name="System Bold" size="12.0" />
-          </font>
+      <Button fx:id="connectAnnulation" style="-fx-background-color: #0489B1; -fx-text-fill: white" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Annuler" onMouseEntered="#annulationEnter" onMouseExited="#annulationExit" onMouseClicked="#closeWindow">
+          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
       <Label text="Pas encore inscrit ? " textFill="skyblue" layoutX="195.0" layoutY="375.0" />
-      <Button fx:id="register" alignment="CENTER" style="-fx-background-color: #0489B1" textFill="white" contentDisplay="CENTER" layoutY="400.0" layoutX="190.0" text="Créer un compte" onAction="#openRegisterWindow">
-          <font>
-              <Font name="System Bold" size="12.0" />
-          </font>
+      <Button fx:id="register" alignment="CENTER" style="-fx-background-color: #0489B1; -fx-text-fill: white" contentDisplay="CENTER" layoutY="400.0" layoutX="190.0" text="Créer un compte" onAction="#openRegisterWindow">
+          <font><Font name="System Bold" size="12.0" /></font>
       </Button>
    </children>
 </AnchorPane>

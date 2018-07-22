@@ -28,10 +28,9 @@ public class ConnectionController extends AnchorPane{
     @FXML
     Button connectValidation;
     @FXML
-    public void validationEnter (MouseEvent onMouseEntered) { connectValidation.setStyle("-fx-background-color: green"); }
-
+    public void validationEnter (MouseEvent onMouseEntered) { connectValidation.setStyle("-fx-background-color: #04B431; -fx-text-fill: white"); }
     @FXML
-    public void validationExit (MouseEvent onMouseExited) { connectValidation.setStyle("-fx-background-color: #0489B1"); }
+    public void validationExit (MouseEvent onMouseExited) { connectValidation.setStyle("-fx-background-color: #0489B1; -fx-text-fill: white"); }
 
     @FXML
     public void openApplication(MouseEvent onMouseClicked) throws Exception {
@@ -63,12 +62,9 @@ public class ConnectionController extends AnchorPane{
     @FXML
     Button connectAnnulation;
     @FXML
-    public void annulationEnter (MouseEvent onMouseEntered) {
-        connectAnnulation.setStyle("-fx-background-color: red");
-    }
-
+    public void annulationEnter (MouseEvent onMouseEntered) { connectAnnulation.setStyle("-fx-background-color: #DF0101; -fx-text-fill: white"); }
     @FXML
-    public void annulationExit (MouseEvent onMouseExited) { connectAnnulation.setStyle("-fx-background-color: #0489B1"); }
+    public void annulationExit (MouseEvent onMouseExited) { connectAnnulation.setStyle("-fx-background-color: #0489B1; -fx-text-fill: white"); }
 
     @FXML
     public void closeWindow (MouseEvent onMouseClicked){

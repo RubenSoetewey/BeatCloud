@@ -73,7 +73,7 @@ public class RegisterController extends AnchorPane{
     Button registerValidation;
 
     @FXML
-    public void validationEnter (MouseEvent onMouseEntered) { registerValidation.setStyle("-fx-background-color: green"); }
+    public void validationEnter (MouseEvent onMouseEntered) { registerValidation.setStyle("-fx-background-color: #04B431"); }
 
     @FXML
     public void validationExit (MouseEvent onMouseExited) { registerValidation.setStyle("-fx-background-color: #0489B1"); }
@@ -160,7 +160,7 @@ public class RegisterController extends AnchorPane{
     }
 
     @FXML
-    public void annulationEnter (MouseEvent onMouseEntered) { registerAnnulation.setStyle("-fx-background-color: red"); }
+    public void annulationEnter (MouseEvent onMouseEntered) { registerAnnulation.setStyle("-fx-background-color: #DF0101"); }
 
     @FXML
     public void annulationExit (MouseEvent onMouseExited) { registerAnnulation.setStyle("-fx-background-color: #0489B1"); }
