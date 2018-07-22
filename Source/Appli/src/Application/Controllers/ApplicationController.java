@@ -44,7 +44,7 @@ import java.util.Vector;
 
 import static Application.Util.SoundMixer.concatWav;
 
-public class ApplicationController extends BorderPane implements Initializable {
+public class ApplicationController extends BorderPane {
     @FXML
     Stage primaryStage;
 
@@ -143,7 +143,7 @@ public class ApplicationController extends BorderPane implements Initializable {
     boolean atEndOfMedia = false;
     private FadeTransition ft;
 
-    public void setMainPlayer(MediaPlayer mediaPlayer) {
+    /*public void setMainPlayer(MediaPlayer mediaPlayer) {
         this.mainPlayer = mediaPlayer;
 
         mediaPlayer.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
@@ -216,7 +216,7 @@ public class ApplicationController extends BorderPane implements Initializable {
                 }
             }
         });
-    }
+    }*/
 
     private static String formatTime(Duration elapsed, Duration duration) {
         int intElapsed = (int) Math.floor(elapsed.toSeconds());
@@ -396,7 +396,7 @@ public class ApplicationController extends BorderPane implements Initializable {
         }
     }*/
 
-    @Override
+    /*@Override
     public void initialize(URL location, ResourceBundle resources) {
         ft = new FadeTransition(Duration.millis(2000), mediaBar);
         ft.setFromValue(1.0);
@@ -415,10 +415,8 @@ public class ApplicationController extends BorderPane implements Initializable {
             if(newValue!=null){
                 stopAction(null);
             }
-        });*/
-    }
-
-
+        });
+    }*/
 
     @FXML
     public void handlePlay(ActionEvent onMouseClicked) {
