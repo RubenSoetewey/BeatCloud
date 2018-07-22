@@ -601,7 +601,7 @@ public class ApplicationController extends BorderPane {
         for (Node n: ( dropZone.getChildren())) {
             try{
                 BCButton b = (BCButton)n;
-                allFiles.add(b.associatedFile);
+                allFiles.add(b.associatedFileURL);
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -747,7 +747,7 @@ public class ApplicationController extends BorderPane {
         openFile.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
         File selectedFile = fileChoosed.showOpenDialog(primaryStage);
         if (selectedFile != null) {
-           BCButton button =  new BCButton(selectedFile.getAbsoluteFile().toURI().toString(),selectedFile.getName());
+           BCButton button =  new BCButton(selectedFile.getAbsoluteFile().toURI().toString(),selectedFile.getName(),selectedFile.getAbsoluteFile().toString());
            button.setOnMouseClicked(this::listenSound);
            button.setOnDragDone(this::onDragDone);
            button.setOnDragDetected(this::onDragDetected);
