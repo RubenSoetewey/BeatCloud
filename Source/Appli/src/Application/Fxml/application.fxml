@@ -155,12 +155,17 @@
                 <Label text="Glisser vos morceaux dans cette zone" textFill="white" layoutY="310.0" layoutX="190.0" >
                     <font><Font name="System Bold" size="20.0" /></font>
                 </Label>
-                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="250.0" layoutY="360.0" text="Valider les sons" >
+                <Button fx:id="addMusic" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="200.0" layoutY="360.0" text="Ajouter des sons" onAction="#importFile">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-                <Button fx:id="deleteSound" style="-fx-background-color: #DF0101" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="370.0" layoutY="360.0" text="Supprimer" onMouseClicked="#deleteSound" >
+                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="320.0" layoutY="360.0" text="Valider les sons" >
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="deleteSound" style="-fx-background-color: #DF0101" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="435.0" layoutY="360.0" text="Supprimer" onMouseClicked="#deleteSound" >
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
