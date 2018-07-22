@@ -1,13 +1,20 @@
 package Application.Controllers;
 
+import Application.Util.BCButton;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.beans.InvalidationListener;
@@ -456,6 +463,21 @@ public class ApplicationController extends BorderPane {
     private void validMusicExit (MouseEvent onMouseExited) { validMusic.setStyle("-fx-background-color: darkturquoise"); }
 
     @FXML
+    private void validMusicCliqued (MouseEvent onMouseCliqued){
+
+
+
+        for (Node n: ( dropZone.getChildren())) {
+            try{
+                BCButton b = (BCButton)n;
+                //b.associatedFile;
+            }
+            catch (Exception e){
+
+            }
+        }
+    }
+    @FXML
     HBox soundZone;
 
     @FXML
@@ -473,16 +495,15 @@ public class ApplicationController extends BorderPane {
     Media guitarMedia;
 
     public void listenSound(MouseEvent onClicked) {
-        /*File file = new File("C:\\Users\\Pauline\\Desktop\\BeatCloud\\Source\\Appli\\src\\Application\\Music\\test.mp3");
-        Media media = new Media(file.toURI().toString());*/
-        if (pianoTest.isFocused() == true) {
+        /*if (pianoTest.isFocused() == true) {
             pianoPlayer = new MediaPlayer(pianoMedia);
             pianoPlayer.play();
         }
         else if(guitarTest.isFocused() == true) {
             guitarPlayer = new MediaPlayer(guitarMedia);
             guitarPlayer.play();
-        }
+        }*/
+        MediaPlayer player = new MediaPlayer(new Media(((BCButton)onClicked.getSource()).associatedFile));
     }
 
     public void onDragDetected(MouseEvent onDragDetected) {
@@ -529,6 +550,7 @@ public class ApplicationController extends BorderPane {
     public void onDragDropped(DragEvent onDragDropped) {
         /* data dropped */
         /* if there is a string data on dragboard, read it and use it */
+        ObservableList<Node> nodes =  dropZone.getChildren();
         Dragboard db = onDragDropped.getDragboard();
         boolean success = false;
         if (db.hasString()) {
