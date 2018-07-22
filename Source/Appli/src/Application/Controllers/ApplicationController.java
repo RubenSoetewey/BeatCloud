@@ -4,11 +4,21 @@ import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import Application.Util.BCButton;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.beans.InvalidationListener;
@@ -27,6 +37,13 @@ import javafx.scene.media.MediaPlayer.Status;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import Application.Util.SoundMixer;
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Vector;
+
+import static Application.Util.SoundMixer.concatWav;
 
 public class ApplicationController extends BorderPane implements Initializable {
     @FXML
@@ -577,6 +594,31 @@ public class ApplicationController extends BorderPane implements Initializable {
     @FXML
     Button validMusic;
     @FXML
+<<<<<<< HEAD
+=======
+    public void validMusicEnter (MouseEvent onMouseEntered) { validMusic.setStyle("-fx-background-color: green"); }
+    @FXML
+    private void validMusicExit (MouseEvent onMouseExited) { validMusic.setStyle("-fx-background-color: darkturquoise"); }
+
+    @FXML
+    private void validMusicCliqued (MouseEvent onMouseCliqued){
+        Vector<String> allFiles = new Vector<>();
+        for (Node n: ( dropZone.getChildren())) {
+            try{
+                BCButton b = (BCButton)n;
+                allFiles.add(b.associatedFile);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        try {
+            concatWav("Output.wav",allFiles);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     Button deleteSound;
 
     @FXML
@@ -589,15 +631,16 @@ public class ApplicationController extends BorderPane implements Initializable {
     @FXML
     Media pianoMedia;
 
-    @FXML
-    Button guitarTest;
-    @FXML
-    MediaPlayer guitarPlayer;
+    //@FXML
+    //BCButton guitarTest;
+    //@FXML
+    //MediaPlayer guitarPlayer;
     @FXML
     Media guitarMedia;
 
     @FXML
     public void listenSound(MouseEvent onClicked) {
+        /*if (pianoTest.isFocused() == true) {
         if (pianoTest.isFocused() == true) {
             pianoPlayer = new MediaPlayer(pianoMedia);
             pianoPlayer.play();
@@ -605,7 +648,10 @@ public class ApplicationController extends BorderPane implements Initializable {
         else if(guitarTest.isFocused() == true) {
             guitarPlayer = new MediaPlayer(guitarMedia);
             guitarPlayer.play();
-        }
+        }*/
+
+        MediaPlayer player = new MediaPlayer(new Media(((BCButton)onClicked.getSource()).associatedFile));
+        player.play();
     }
 
     @FXML
@@ -619,7 +665,7 @@ public class ApplicationController extends BorderPane implements Initializable {
     public void onDragDetected(MouseEvent onDragDetected) {
         /* drag was detected, start drag-and-drop gesture*/
         ClipboardContent content = new ClipboardContent();
-        content.putString(pianoTest.getText());
+       /* content.putString(pianoTest.getText());
         if (pianoTest.isFocused() == true) {
             Dragboard db = pianoTest.startDragAndDrop(TransferMode.ANY); //allow any transfer mode
             db.setContent(content);
@@ -627,7 +673,12 @@ public class ApplicationController extends BorderPane implements Initializable {
         else if (guitarTest.isFocused() == true) {
             Dragboard db = guitarTest.startDragAndDrop(TransferMode.ANY);
             db.setContent(content);
-        }
+        }*/
+
+        content.putString(((BCButton)onDragDetected.getSource()).getText());
+        Dragboard db = ((BCButton)onDragDetected.getSource()).startDragAndDrop(TransferMode.ANY);
+        db.setContent(content);
+
         onDragDetected.consume();
     }
 
@@ -662,6 +713,7 @@ public class ApplicationController extends BorderPane implements Initializable {
     public void onDragDropped(DragEvent onDragDropped) {
         /* data dropped */
         /* if there is a string data on dragboard, read it and use it */
+        ObservableList<Node> nodes =  dropZone.getChildren();
         Dragboard db = onDragDropped.getDragboard();
         boolean success = false;
         if (db.hasString()) {
@@ -677,7 +729,7 @@ public class ApplicationController extends BorderPane implements Initializable {
         /* the drag-and-drop gesture ended */
         /* if the data was successfully moved, clear it */
         if (onDragDone.getTransferMode() == TransferMode.MOVE && onDragDone.getDragboard().hasString()) {
-            if (pianoTest.isFocused() == true) {
+           /* if (pianoTest.isFocused() == true) {
                 Button target = new Button(pianoTest.getText());
                 dropZone.getChildren().add(target);
             }
@@ -685,8 +737,27 @@ public class ApplicationController extends BorderPane implements Initializable {
             else if (guitarTest.isFocused() == true) {
                 Button target = new Button(guitarTest.getText());
                 dropZone.getChildren().add(target);
-            }
+            }*/
+            BCButton target = new BCButton(((BCButton)onDragDone.getSource()).associatedFile,((BCButton)onDragDone.getSource()).getText());
+            dropZone.getChildren().add(target);
         }
         onDragDone.consume();
+    }
+
+    public void importFile(ActionEvent actionEvent) {
+        FileChooser fileChoosed = new FileChooser();
+        fileChoosed.setTitle("Open file");
+        fileChoosed.setInitialDirectory(new File("./"));
+        fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Audio Files", "*.wav"));
+        openFile.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
+        File selectedFile = fileChoosed.showOpenDialog(primaryStage);
+        if (selectedFile != null) {
+           BCButton button =  new BCButton(selectedFile.getAbsoluteFile().toURI().toString(),selectedFile.getName());
+           button.setOnMouseClicked(this::listenSound);
+           button.setOnDragDone(this::onDragDone);
+           button.setOnDragDetected(this::onDragDetected);
+           soundZone.getChildren().add(button);
+        }
+        actionEvent.consume();
     }
 }
