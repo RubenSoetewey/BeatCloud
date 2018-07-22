@@ -38,7 +38,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import Application.Util.SoundMixer;
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
@@ -594,8 +593,6 @@ public class ApplicationController extends BorderPane implements Initializable {
     @FXML
     Button validMusic;
     @FXML
-<<<<<<< HEAD
-=======
     public void validMusicEnter (MouseEvent onMouseEntered) { validMusic.setStyle("-fx-background-color: green"); }
     @FXML
     private void validMusicExit (MouseEvent onMouseExited) { validMusic.setStyle("-fx-background-color: darkturquoise"); }
