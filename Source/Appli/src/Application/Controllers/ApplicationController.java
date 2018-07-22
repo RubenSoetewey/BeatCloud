@@ -56,10 +56,10 @@ public class ApplicationController extends BorderPane {
     public void createNewFile(ActionEvent event) {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Create new file");
-        fileChoosed.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop")); //position on desktop
+        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
         fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("WAV Files", "*.wav"));
         newFile.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
-        File selectedFile = fileChoosed.showSaveDialog(primaryStage);
+        File selectedFile = fileChoosed.showOpenDialog(primaryStage);
         if (selectedFile != null) {
             System.out.println(selectedFile);
             //List<File> files = Arrays.asList(selectedFile);
@@ -75,10 +75,10 @@ public class ApplicationController extends BorderPane {
     MenuItem openFile;
 
     @FXML
-    public void openFile(final ActionEvent event) {
+    public void openFile(ActionEvent event) {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Open file");
-        fileChoosed.setInitialDirectory(new File("./"));
+        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
         fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Audio Files", "*.mp3"));
         openFile.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
         File selectedFile = fileChoosed.showOpenDialog(primaryStage);
@@ -98,9 +98,9 @@ public class ApplicationController extends BorderPane {
     public void saveFile(ActionEvent event) {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Save File");
-        fileChoosed.setInitialDirectory(new File("./"));
+        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
         fileChoosed.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Audio Files", "*.mp3"));
-        //saveFile.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN)); //Crée une erreur NullPointeur
+        saveFile.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN)); //Crée une erreur NullPointeur
         File selectedFile = fileChoosed.showSaveDialog(primaryStage);
         if (selectedFile != null) {
             System.out.println(selectedFile);
@@ -217,6 +217,8 @@ public class ApplicationController extends BorderPane {
             }
         });
     }*/
+
+
 
     private static String formatTime(Duration elapsed, Duration duration) {
         int intElapsed = (int) Math.floor(elapsed.toSeconds());
@@ -619,13 +621,6 @@ public class ApplicationController extends BorderPane {
     @FXML
     HBox soundZone;
 
-    @FXML
-    Button pianoTest;
-    @FXML
-    MediaPlayer pianoPlayer;
-    @FXML
-    Media pianoMedia;
-
     //@FXML
     //BCButton guitarTest;
     //@FXML
@@ -742,7 +737,7 @@ public class ApplicationController extends BorderPane {
     public void importFile(ActionEvent actionEvent) {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Open file");
-        fileChoosed.setInitialDirectory(new File("./"));
+        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
         fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Audio Files", "*.wav"));
         openFile.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
         File selectedFile = fileChoosed.showOpenDialog(primaryStage);
