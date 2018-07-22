@@ -1,18 +1,16 @@
 package Application.Util;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.SequenceInputStream;
-import java.util.Enumeration;
-import java.util.Vector;
+import java.io.*;
+import java.util.*;
 
 import jm.util.*;
+
+import javax.sound.sampled.*;
 
 public class SoundMixer {
 
 
+<<<<<<< HEAD
     /*public static void concatWav(String resultName, Vector<String> files) throws FileNotFoundException, IOException{
         //FileInputStream fistream1 = new FileInputStream(wavFile1);  // first source file
         //FileInputStream fistream2 = new FileInputStream(wavFile2);//second source file
@@ -51,6 +49,54 @@ public class SoundMixer {
         }
         fostream.close();
         sistream.close();
+=======
+
+    public static void concatWav(String destinationFileName, List<String> sourceFilesList) throws FileNotFoundException, IOException{
+        AudioInputStream audioInputStream = null;
+        List<AudioInputStream> audioInputStreamList = null;
+        AudioFormat audioFormat = null;
+        Long frameLength = null;
+
+        try {
+            // loop through our files first and load them up
+            for (String sourceFile : sourceFilesList) {
+                audioInputStream = AudioSystem.getAudioInputStream(new File(sourceFile));
+
+                // get the format of first file
+                if (audioFormat == null) {
+                    audioFormat = audioInputStream.getFormat();
+                }
+
+                // add it to our stream list
+                if (audioInputStreamList == null) {
+                    audioInputStreamList = new ArrayList<AudioInputStream>();
+                }
+                audioInputStreamList.add(audioInputStream);
+
+                // keep calculating frame length
+                if(frameLength == null) {
+                    frameLength = audioInputStream.getFrameLength();
+                } else {
+                    frameLength += audioInputStream.getFrameLength();
+                }
+            }
+
+            // now write our concatenated file
+            AudioSystem.write(new AudioInputStream(new SequenceInputStream(Collections.enumeration(audioInputStreamList)), audioFormat, frameLength), AudioFileFormat.Type.WAVE, new File(destinationFileName));
+
+            // if all is good, return true
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } finally {
+            if (audioInputStream != null) {
+                audioInputStream.close();
+            }
+            if (audioInputStreamList != null) {
+                audioInputStreamList = null;
+            }
+        }
+>>>>>>> 3e90f9e88b824ca7b94595933d50a16e4eba4a74
     }
 
     public void mixWav(String wavFile1,String wavFile2,String resultName){

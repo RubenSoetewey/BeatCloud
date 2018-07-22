@@ -603,7 +603,7 @@ public class ApplicationController extends BorderPane {
         for (Node n: ( dropZone.getChildren())) {
             try{
                 BCButton b = (BCButton)n;
-                allFiles.add(b.associatedFileURL);
+                allFiles.add(b.associatedFile);
             }
             catch (Exception e){
                 e.printStackTrace();
