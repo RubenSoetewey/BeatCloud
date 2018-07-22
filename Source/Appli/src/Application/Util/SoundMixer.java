@@ -5,19 +5,24 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.SequenceInputStream;
+import java.util.Enumeration;
+import java.util.Vector;
+
 import jm.util.*;
 
 public class SoundMixer {
 
 
-    public void concatWav(String wavFile1,String wavFile2,String resultName) throws FileNotFoundException, IOException{
-        FileInputStream fistream1 = new FileInputStream(wavFile1);  // first source file
-        FileInputStream fistream2 = new FileInputStream(wavFile2);//second source file
-        SequenceInputStream sistream = new SequenceInputStream(fistream1, fistream2);
+    public static void concatWav(String resultName, Vector<String> files) throws FileNotFoundException, IOException{
+        //FileInputStream fistream1 = new FileInputStream(wavFile1);  // first source file
+        //FileInputStream fistream2 = new FileInputStream(wavFile2);//second source file
+        Vector<FileInputStream> streams = new Vector<>();
+        for(String file:files){
+            streams.add(new FileInputStream(file));
+        }
+        SequenceInputStream sistream = new SequenceInputStream(streams.elements());
         FileOutputStream fostream = new FileOutputStream(resultName);//destinationfile
-
         int temp;
-
         while( ( temp = sistream.read() ) != -1)
         {
             // System.out.print( (char) temp ); // to print at DOS prompt
@@ -25,8 +30,6 @@ public class SoundMixer {
         }
         fostream.close();
         sistream.close();
-        fistream1.close();
-        fistream2.close();
     }
 
     public void mixWav(String wavFile1,String wavFile2,String resultName){

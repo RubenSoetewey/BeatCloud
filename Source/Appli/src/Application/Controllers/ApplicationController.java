@@ -29,9 +29,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.media.MediaPlayer.Status;
-
+import Application.Util.SoundMixer;
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
+import java.util.Vector;
+
+import static Application.Util.SoundMixer.concatWav;
 
 public class ApplicationController extends BorderPane {
     @FXML
@@ -466,17 +470,20 @@ public class ApplicationController extends BorderPane {
 
     @FXML
     private void validMusicCliqued (MouseEvent onMouseCliqued){
-
-
-
+        Vector<String> allFiles = new Vector<>();
         for (Node n: ( dropZone.getChildren())) {
             try{
                 BCButton b = (BCButton)n;
-                //b.associatedFile;
+                allFiles.add(b.associatedFile);
             }
             catch (Exception e){
-
+                e.printStackTrace();
             }
+        }
+        try {
+            concatWav("Output.wav",allFiles);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     @FXML
@@ -514,7 +521,9 @@ public class ApplicationController extends BorderPane {
             guitarPlayer = new MediaPlayer(guitarMedia);
             guitarPlayer.play();
         }*/
+
         MediaPlayer player = new MediaPlayer(new Media(((BCButton)onClicked.getSource()).associatedFile));
+        player.play();
     }
 
     @FXML
@@ -615,7 +624,11 @@ public class ApplicationController extends BorderPane {
         openFile.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
         File selectedFile = fileChoosed.showOpenDialog(primaryStage);
         if (selectedFile != null) {
-            soundZone.getChildren().add(new BCButton(selectedFile.getAbsoluteFile().toString(),selectedFile.getName()));
+           BCButton button =  new BCButton(selectedFile.getAbsoluteFile().toURI().toString(),selectedFile.getName());
+           button.setOnMouseClicked(this::listenSound);
+           button.setOnDragDone(this::onDragDone);
+           button.setOnDragDetected(this::onDragDetected);
+           soundZone.getChildren().add(button);
         }
         actionEvent.consume();
     }

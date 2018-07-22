@@ -145,39 +145,39 @@
         <HBox fx:id="soundZone" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
             <padding><Insets topRightBottomLeft="50" /></padding>
             <children>
-            <Button fx:id="pianoTest" text="pianoTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
-                <graphic>
-                    <ImageView>
-                        <image>
-                            <Image url="@../Photo/music.png" requestedHeight="30" requestedWidth="45"/>
-                        </image>
-                    </ImageView>
-                </graphic>
-                <Pane>
-                    <children>
-                        <MediaView fitWidth="50" fitHeight="1" visible="false">
-                            <mediaPlayer>
-                                <MediaPlayer fx:id="pianoPlayer" autoPlay="false">
-                                    <media>
-                                        <Media fx:id="pianoMedia" source="@../Music/test.wav"/>
-                                    </media>
-                                </MediaPlayer>
-                            </mediaPlayer>
-                        </MediaView>
-                    </children>
-                </Pane>
-            </Button>
-                <!-- <Application.Util.BCButton fx:id="guitarTest" text="guitarTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
-                       <MediaView fitWidth="50" fitHeight="1" visible="false">
-                           <mediaPlayer>
-                               <MediaPlayer fx:id="guitarPlayer" autoPlay="false">
-                                   <media>
-                                       <Media fx:id="guitarMedia" source="@../Music/do.wav"/>
-                                   </media>
-                               </MediaPlayer>
-                           </mediaPlayer>
-                       </MediaView>
-                </Application.Util.BCButton > -->
+                <!-- <Button fx:id="pianoTest" text="pianoTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
+                     <graphic>
+                         <ImageView>
+                             <image>
+                                 <Image url="@../Photo/music.png" requestedHeight="30" requestedWidth="45"/>
+                             </image>
+                         </ImageView>
+                     </graphic>
+                     <Pane>
+                         <children>
+                             <MediaView fitWidth="50" fitHeight="1" visible="false">
+                                 <mediaPlayer>
+                                     <MediaPlayer fx:id="pianoPlayer" autoPlay="false">
+                                         <media>
+                                             <Media fx:id="pianoMedia" source="@../Music/test.wav"/>
+                                         </media>
+                                     </MediaPlayer>
+                                 </mediaPlayer>
+                             </MediaView>
+                         </children>
+                     </Pane>
+                 </Button>-->
+                     <!-- <Application.Util.BCButton fx:id="guitarTest" text="guitarTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
+                            <MediaView fitWidth="50" fitHeight="1" visible="false">
+                                <mediaPlayer>
+                                    <MediaPlayer fx:id="guitarPlayer" autoPlay="false">
+                                        <media>
+                                            <Media fx:id="guitarMedia" source="@../Music/do.wav"/>
+                                        </media>
+                                    </MediaPlayer>
+                                </mediaPlayer>
+                            </MediaView>
+                     </Application.Util.BCButton > -->
             <Button fx:id="validMusic" style="-fx-background-color: yellow" textFill="black" contentDisplay="CENTER" layoutX="250.0" layoutY="340.0" text="Valider la compilation" onMouseEntered="#validMusicEnter" onMouseExited="#validMusicExit" >
                 <font>
                     <Font name="System Bold" size="12.0" />
