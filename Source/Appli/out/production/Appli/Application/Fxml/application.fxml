@@ -155,7 +155,7 @@
                 <Label text="Glisser vos morceaux dans cette zone" textFill="white" layoutY="310.0" layoutX="190.0" >
                     <font><Font name="System Bold" size="20.0" /></font>
                 </Label>
-                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="250.0" layoutY="360.0" text="Valider les sons" >
+                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="250.0" layoutY="360.0" text="Valider les sons"  onMouseClicked="#validMusicCliqued">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
@@ -173,34 +173,6 @@
         <HBox fx:id="soundZone" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
             <padding><Insets topRightBottomLeft="50" /></padding>
             <children>
-            <Button fx:id="pianoTest" text="pianoTest" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
-                <font><Font name="System Bold" size="12.0" /></font>
-                <Pane>
-                    <children>
-                        <MediaView fitWidth="50" fitHeight="1" visible="false">
-                            <mediaPlayer>
-                                <MediaPlayer fx:id="pianoPlayer" autoPlay="false">
-                                    <media>
-                                        <Media fx:id="pianoMedia" source="@../Music/test.wav"/>
-                                    </media>
-                                </MediaPlayer>
-                            </mediaPlayer>
-                        </MediaView>
-                    </children>
-                </Pane>
-            </Button>
-            <Button fx:id="guitarTest" text="guitarTest" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
-                <font><Font name="System Bold" size="12.0" /></font>
-                <MediaView fitWidth="50" fitHeight="1" visible="false">
-                    <mediaPlayer>
-                        <MediaPlayer fx:id="guitarPlayer" autoPlay="false">
-                            <media>
-                                <Media fx:id="guitarMedia" source="@../Music/do.wav"/>
-                            </media>
-                        </MediaPlayer>
-                    </mediaPlayer>
-                </MediaView>
-            </Button>
                 <!-- <Button fx:id="pianoTest" text="pianoTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
                      <graphic>
                          <ImageView>
