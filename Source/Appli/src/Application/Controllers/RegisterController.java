@@ -71,16 +71,13 @@ public class RegisterController extends AnchorPane{
 
     @FXML
     Button registerValidation;
-
     @FXML
     public void validationEnter (MouseEvent onMouseEntered) { registerValidation.setStyle("-fx-background-color: #04B431"); }
-
     @FXML
     public void validationExit (MouseEvent onMouseExited) { registerValidation.setStyle("-fx-background-color: #0489B1"); }
 
     @FXML
     public void openApplication(MouseEvent onMouseClicked) throws Exception {
-        //String birthdateRegex = "^(\\d{2})\\/(\\d{2})\\/(\\d{4})";
         if (surname.getText().length() != 0 && firstname.getText().length() != 0
             && registerLogin.getText().length() != 0 && verifyLogin(registerLogin.getText()) == true
             && confirmPassword.getText().equals(registerPassword.getText())
@@ -97,7 +94,7 @@ public class RegisterController extends AnchorPane{
             applicationStage.setTitle("BeatCloud");
             applicationStage.setResizable(false);
             applicationStage.getIcons().add(new Image(Main.class.getResourceAsStream("Photo/Logo.png")));
-            applicationStage.setScene(new Scene(rootApplication, 1200, 750));
+            applicationStage.setScene(new Scene(rootApplication, 700, 400));
             applicationStage.show();
 
             registerStage = (Stage) registerAnnulation.getScene().getWindow();
@@ -161,7 +158,6 @@ public class RegisterController extends AnchorPane{
 
     @FXML
     public void annulationEnter (MouseEvent onMouseEntered) { registerAnnulation.setStyle("-fx-background-color: #DF0101"); }
-
     @FXML
     public void annulationExit (MouseEvent onMouseExited) { registerAnnulation.setStyle("-fx-background-color: #0489B1"); }
 

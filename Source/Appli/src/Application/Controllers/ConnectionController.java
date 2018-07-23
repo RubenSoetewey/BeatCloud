@@ -19,12 +19,10 @@ import java.util.Optional;
 public class ConnectionController extends AnchorPane{
     @FXML
     Stage connectionStage;
-
     @FXML
     TextField connectLogin;
     @FXML
     PasswordField connectPassword;
-
     @FXML
     Button connectValidation;
     @FXML
@@ -43,7 +41,7 @@ public class ConnectionController extends AnchorPane{
             applicationStage.setTitle("BeatCloud");
             applicationStage.setResizable(false);
             applicationStage.getIcons().add(new Image(Main.class.getResourceAsStream("Photo/Logo.png")));
-            applicationStage.setScene(new Scene(rootApplication, 1200, 750));
+            applicationStage.setScene(new Scene(rootApplication, 700, 400));
             applicationStage.show();
 
             connectionStage = (Stage) connectAnnulation.getScene().getWindow();

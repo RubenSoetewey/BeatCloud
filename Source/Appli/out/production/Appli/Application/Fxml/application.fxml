@@ -6,31 +6,18 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.media.Media?>
-<?import javafx.scene.media.MediaPlayer?>
-<?import javafx.scene.media.MediaView?>
-
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.ApplicationController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.ApplicationController">
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
+        <MenuBar >
             <menus>
                 <Menu text="Fichier">
                     <items>
-                        <MenuItem fx:id="newFile" accelerator="Ctrl + N" onAction="#createNewFile" text="Nouveau fichier" />
-                        <MenuItem fx:id="openFile" accelerator="Ctrl + O" onAction="#openFile" text="Ouvrir un fichier..." />
-                        <MenuItem fx:id="saveFile" accelerator="Ctrl + S" onAction="#saveFile" text="Enregistrer le fichier" />
-                        <SeparatorMenuItem />
                         <Menu text="Importer...">
                             <items>
                                 <MenuItem text="Média..." onAction="#importFile"/>
@@ -47,127 +34,32 @@
         </MenuBar>
     </top>
 
-    <left>
-        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #0489B1" BorderPane.alignment="CENTER"/>
-    </left>
-
-    <right>
-        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #0489B1" BorderPane.alignment="CENTER" />
-    </right>
-
     <center>
-        <Pane fx:id="musicPane" prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER" style="-fx-background-color: black">
+        <Pane fx:id="musicPane" style="-fx-background-color: #0489B1">
             <children>
-                <MediaView fx:id="mainView" fitHeight="400.0" fitWidth="700.0" >
-                    <mediaPlayer>
-                        <MediaPlayer fx:id="mainPlayer" autoPlay="false" >
-                            <media>
-                                <Media fx:id="mainMedia" source="http://download.oracle.com/otndocs/products/javafx/oow2010-2.flv" />
-                            </media>
-                        </MediaPlayer>
-                    </mediaPlayer>
-                </MediaView>
-                <HBox fx:id="dropZone" spacing="10" onDragOver="#onDragOver" onDragEntered="#onDragEntered" onDragExited="#onDragExited" onDragDropped="#onDragDropped" alignment="CENTER_LEFT" layoutY="260.0" prefHeight="350.0" prefWidth="700.0" style="-fx-background-color: #0B3861"  >
-                    <padding><Insets topRightBottomLeft="10" /></padding>
-                    <children>
-
-                    </children>
+                <HBox fx:id="dropZone" spacing="10" onDragOver="#onDragOver" onDragEntered="#onDragEntered" onDragExited="#onDragExited" onDragDropped="#onDragDropped" alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: #0B3861" >
+                    <padding><Insets topRightBottomLeft="10" /></padding><children></children>
                 </HBox>
-                <HBox fx:id="mediaBar" alignment="CENTER_LEFT" layoutY="250.0" prefWidth="700.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label fx:id="spacer" text="                                                                                        " />
-                        <Button fx:id="playButton" onAction="#handlePlay" style="-fx-background-color: white">
-                            <graphic>
-                                <ImageView fitHeight="32" fitWidth="32">
-                                    <image>
-                                        <Image fx:id="play" url="@../Photo/play.jpg" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <Label fx:id="spacer1" text="   " />
-                        <Button fx:id="stopButton" onAction="#handleStop" style="-fx-background-color: white">
-                            <graphic>
-                                <ImageView fitHeight="32" fitWidth="32">
-                                    <image>
-                                        <Image fx:id="stop" url="@../Photo/stop.jpg" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                    </children>
-                    <padding>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                    </padding>
-                </HBox>
-                <Label text="Glisser vos morceaux dans cette zone" textFill="white" layoutY="310.0" layoutX="190.0" >
+                <Label text="Gérer votre morceau dans cette zone" textFill="white" layoutY="10.0" layoutX="190.0" >
                     <font><Font name="System Bold" size="20.0" /></font>
                 </Label>
-<<<<<<< HEAD
-                <Button fx:id="addMusic" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="200.0" layoutY="360.0" text="Ajouter des sons" onAction="#importFile">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
+                <Button fx:id="addMusic" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="200.0" layoutY="60.0" text="Ajouter des sons" onAction="#importFile">
+                    <font><Font name="System Bold" size="12.0" /></font>
                 </Button>
-                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="320.0" layoutY="360.0" text="Valider les sons"  onMouseClicked="#validMusicCliqued">
-=======
-                <Button fx:id="addMusic" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="200.0" layoutY="360.0" text="Ajouter des sons" onAction="#importFile"><font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
+                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="320.0" layoutY="60.0" text="Valider les sons"  onMouseClicked="#validMusicCliqued">
+                    <font><Font name="System Bold" size="12.0" /></font>
                 </Button>
-                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="250.0" layoutY="360.0" text="Valider les sons"  onMouseClicked="#validMusicCliqued">
->>>>>>> 3e90f9e88b824ca7b94595933d50a16e4eba4a74
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Button>
-                <Button fx:id="deleteSound" style="-fx-background-color: #DF0101" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="435.0" layoutY="360.0" text="Supprimer" onMouseClicked="#deleteSound" >
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
+                <Button fx:id="deleteSound" style="-fx-background-color: #DF0101" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="435.0" layoutY="60.0" text="Supprimer" onMouseClicked="#deleteSound" >
+                    <font><Font name="System Bold" size="12.0" /></font>
                 </Button>
             </children>
         </Pane>
     </center>
 
     <bottom>
-        <HBox fx:id="soundZone" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="846.0" spacing="30" style="-fx-background-color: #0B3861">
+        <HBox fx:id="soundZone" alignment="CENTER" spacing="30" style="-fx-background-color: #0489B1">
             <padding><Insets topRightBottomLeft="50" /></padding>
-            <children>
-                <!-- <Button fx:id="pianoTest" text="pianoTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
-                     <graphic>
-                         <ImageView>
-                             <image>
-                                 <Image url="@../Photo/music.png" requestedHeight="30" requestedWidth="45"/>
-                             </image>
-                         </ImageView>
-                     </graphic>
-                     <Pane>
-                         <children>
-                             <MediaView fitWidth="50" fitHeight="1" visible="false">
-                                 <mediaPlayer>
-                                     <MediaPlayer fx:id="pianoPlayer" autoPlay="false">
-                                         <media>
-                                             <Media fx:id="pianoMedia" source="@../Music/test.wav"/>
-                                         </media>
-                                     </MediaPlayer>
-                                 </mediaPlayer>
-                             </MediaView>
-                         </children>
-                     </Pane>
-                 </Button>-->
-                     <!-- <Application.Util.BCButton fx:id="guitarTest" text="guitarTest" alignment="CENTER_LEFT" onMouseClicked="#listenSound" onDragDetected="#onDragDetected" onDragDone="#onDragDone" >
-                            <MediaView fitWidth="50" fitHeight="1" visible="false">
-                                <mediaPlayer>
-                                    <MediaPlayer fx:id="guitarPlayer" autoPlay="false">
-                                        <media>
-                                            <Media fx:id="guitarMedia" source="@../Music/do.wav"/>
-                                        </media>
-                                    </MediaPlayer>
-                                </mediaPlayer>
-                            </MediaView>
-                     </Application.Util.BCButton > -->
-            </children>
+            <children></children>
         </HBox>
     </bottom>
 </BorderPane>
