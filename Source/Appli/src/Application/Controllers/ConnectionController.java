@@ -37,6 +37,7 @@ public class ConnectionController extends AnchorPane{
             loaderApplication.setLocation(Main.class.getResource("Fxml/application.fxml"));
             BorderPane rootApplication = (BorderPane) loaderApplication.load();
             ApplicationController applicationController = loaderApplication.getController();
+            applicationController.initPlugin();
             Stage applicationStage = new Stage(StageStyle.DECORATED);
             applicationStage.setTitle("BeatCloud");
             applicationStage.setResizable(false);

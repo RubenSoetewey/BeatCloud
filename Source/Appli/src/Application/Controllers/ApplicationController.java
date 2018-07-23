@@ -22,6 +22,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import Application.Util.JarLoader;
+
 import static Application.Util.SoundMixer.concatWav;
 
 public class ApplicationController extends BorderPane {
@@ -37,7 +39,7 @@ public class ApplicationController extends BorderPane {
     public void validMusicEnter (MouseEvent onMouseEntered) { validMusic.setStyle("-fx-background-color: green"); }
     @FXML
     private void validMusicExit (MouseEvent onMouseExited) { validMusic.setStyle("-fx-background-color: darkturquoise"); }
-
+    JarLoader jarLoader = new JarLoader();
     @FXML
     private void validMusicCliqued (MouseEvent onMouseCliqued){
         List<String> allFiles = new ArrayList<>();
@@ -168,5 +170,10 @@ public class ApplicationController extends BorderPane {
             dropZone.getChildren().add(target);
         }
         onDragDone.consume();
+    }
+
+    public void initPlugin(){
+        this.jarLoader.downloadPlugins();
+        this.jarLoader.loadPlugins();
     }
 }
