@@ -9,6 +9,7 @@ import javax.sound.sampled.*;
 
 public class SoundMixer {
 
+<<<<<<< HEAD
 
     /*public static void concatWav(String resultName, Vector<String> files) throws FileNotFoundException, IOException{
         //FileInputStream fistream1 = new FileInputStream(wavFile1);  // first source file
@@ -48,6 +49,8 @@ public class SoundMixer {
         sistream.close();
     }*/
 
+=======
+>>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
     public static void concatWav(String destinationFileName, List<String> sourceFilesList) throws FileNotFoundException, IOException{
         AudioInputStream audioInputStream = null;
         List<AudioInputStream> audioInputStreamList = null;

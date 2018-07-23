@@ -43,11 +43,23 @@
                 <Label text="Gérer votre morceau dans cette zone" textFill="white" layoutY="10.0" layoutX="190.0" >
                     <font><Font name="System Bold" size="20.0" /></font>
                 </Label>
+<<<<<<< HEAD
                 <Button fx:id="addMusic" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="200.0" layoutY="60.0" text="Ajouter des sons" onAction="#importFile">
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Button>
                 <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="320.0" layoutY="60.0" text="Valider les sons"  onMouseClicked="#validMusicCliqued">
                     <font><Font name="System Bold" size="12.0" /></font>
+=======
+
+                <Button fx:id="addMusic" style="-fx-background-color: #0489B1" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="200.0" layoutY="360.0" text="Ajouter des sons" onAction="#importFile"><font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+                </Button>
+                <Button fx:id="validMusic" style="-fx-background-color: #04B431" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="250.0" layoutY="360.0" text="Valider les sons"  onMouseClicked="#validMusicCliqued">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+>>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
                 </Button>
                 <Button fx:id="deleteSound" style="-fx-background-color: #DF0101" alignment="CENTER" textFill="white" contentDisplay="CENTER" layoutX="435.0" layoutY="60.0" text="Supprimer" onMouseClicked="#deleteSound" >
                     <font><Font name="System Bold" size="12.0" /></font>
