@@ -1,10 +1,12 @@
 package Application.Controllers;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import Application.Util.BCButton;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
@@ -29,6 +31,8 @@ import static Application.Util.SoundMixer.concatWav;
 public class ApplicationController extends BorderPane {
 
     public String token = "";
+    @FXML
+    ChoiceBox pluginId;
 
     @FXML
     Stage primaryStage;
@@ -66,6 +70,15 @@ public class ApplicationController extends BorderPane {
             Media media = new Media(source);
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
+            String pluginKey = pluginId.getValue().toString();
+            ArrayList<String> params = new ArrayList<String>();
+
+            params.add(this.token);
+            params.add(filename);
+
+            if(pluginKey.length() > 0){
+                System.out.println(this.jarLoader.execPlugin(pluginKey, params));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,5 +191,11 @@ public class ApplicationController extends BorderPane {
     public void initPlugin(){
         this.jarLoader.downloadPlugins();
         this.jarLoader.loadPlugins();
+        ObservableList<String> options = FXCollections.observableArrayList();
+
+        for( String key : this.jarLoader.pluginsKeys){
+            options.add(key);
+        }
+        this.pluginId.setItems(options);
     }
 }
