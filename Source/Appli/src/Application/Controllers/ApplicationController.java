@@ -70,15 +70,18 @@ public class ApplicationController extends BorderPane {
             Media media = new Media(source);
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
-            String pluginKey = pluginId.getValue().toString();
-            ArrayList<String> params = new ArrayList<String>();
+            try {
+                String pluginKey = pluginId.getValue().toString();
+                ArrayList<String> params = new ArrayList<String>();
 
-            params.add(this.token);
-            params.add(filename);
+                params.add(this.token);
+                params.add(filename);
 
-            if(pluginKey.length() > 0){
-                System.out.println(this.jarLoader.execPlugin(pluginKey, params));
+                if(pluginKey.length() > 0){
+                    System.out.println(this.jarLoader.execPlugin(pluginKey, params));
+                }
             }
+            catch(Exception e){}
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,7 +90,7 @@ public class ApplicationController extends BorderPane {
     public void importFile(ActionEvent actionEvent) {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Open file");
-        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
+        //fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
         fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Audio Files", "*.wav"));
         File selectedFile = fileChoosed.showOpenDialog(primaryStage);
         if (selectedFile != null) {
