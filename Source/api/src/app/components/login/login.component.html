@@ -1,0 +1,26 @@
+<div *ngIf="!auth.isAuth" class="row login-container">
+  <div class="col md-3">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)"  class="form-signin">
+      <img class="mb-4 logo-top"  src="./assets/images/burger.png" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">S'authentifier</h1>
+
+      <span class="error-msg" *ngIf="error.length">
+        {{ error }}
+      </span>
+
+      <label for="account" class="sr-only">Addresse email/ nom de compte</label>
+      <input type="account" name="account" id="account" class="form-control" placeholder="Addresse mail" required autofocus ngModel>
+      <label for="inputPassword" class="sr-only">Mot de passe</label>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" required ngModel>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="auth.isAuth" class="row already-auth">
+  <div class="col-xs-3 col-sm-4 col-md-4"></div>
+  <div class="col-xs-3 col-sm-4 col-md-4">
+    <h1 class="h3 mb-3 font-weight-normal">Vous etes connecté en tant que {{ auth.lastName }} {{ auth.firstName }}</h1>
+    <button class="btn btn-lg btn-primary btn-block" (click)="logout()">Se déconnecter</button>
+  </div>
+</div>

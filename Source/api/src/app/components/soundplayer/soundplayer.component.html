@@ -1,0 +1,22 @@
+<div class="player-container" attr.id="container-{{playerId}}">
+  <div attr.id="img-{{playerId}}" class="player-image"></div>
+  <div class="player-btn" (click)="playPause()">
+    <i *ngIf="!isPlaying" class="far fa-play-circle"></i>
+    <i *ngIf="isPlaying"  class="fas fa-pause-circle"></i>
+  </div>
+  <div class="sound-info">
+    <div class="sound-artist">{{sound.artistName}}</div>
+    <div class="sound-name">{{sound.name}}</div>
+  </div>
+  <div *ngIf="this.auth.userId == sound.userId || auth.rank >= 7 " class="sound-actions">
+    <button *ngIf="sound.type == 'music'" type="button" (click)="editSound()" class="btn btn-secondary">
+      <i class="fas fa-pencil-alt"></i>
+    </button>
+    <button type="button" (click)="removeSound()" class="btn btn-danger">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+  </div>
+  <div class="waveform-container">
+    <div attr.id="{{playerId}}"></div>
+  </div>
+</div>

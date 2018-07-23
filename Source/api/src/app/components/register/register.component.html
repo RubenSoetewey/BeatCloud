@@ -1,0 +1,98 @@
+<div *ngIf="!auth.isAuth" class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="py-5 text-center">
+      <h2>Créer un compte</h2>
+      <p class="lead">Créez vous un compte et créez votre premier morceaux ! </p>
+    </div>
+
+    <div class="errors-container">
+      <p class="error" *ngFor="let error of errors">
+        {{error.msg}}
+      </p>
+    </div>
+
+    <h4 class="mb-3">Informations personnelle</h4>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)" >
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">Nom </label>
+          <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Dupont" value="" ngModel>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Prénom</label>
+          <input name="firstName" type="text" class="form-control" id="firstName" value="" placeholder="Jean" ngModel>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-user"></i></span>
+          </div>
+          <input name="username" type="text" class="form-control" id="username" placeholder="Nom de compte ex : dupont.jean" ngModel>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>
+          <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe" ngModel>
+          <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirmez le mot de passe" ngModel>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <div class="mb-3">
+        <label for="email">Email <span class="text-muted"></span></label>
+        <input name="email" type="text" class="form-control" id="email" placeholder="dupont.jean@esgi.com" ngModel>
+      </div>
+      <div class="mb-3">
+        <label for="artistName">Nom d'artiste <span class="text-muted"></span></label>
+        <input name="artistName" type="text" class="form-control" id="artistName" placeholder="DJ ESGI" ngModel>
+      </div>
+      <div class="mb-3">
+        <label for="phone">Numéro de téléphone : </label>
+        <input name="phone" type="text" class="form-control" id="phone" placeholder="+33635000007" ngModel>
+      </div>
+
+      <h4>Date de naissance</h4>
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <label for="day">Jour</label>
+          <input name="birthDay" type="number" min="1" max="31" class="form-control" id="day" placeholder="31" ngModel>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="state">Mois</label>
+          <select name="birthMonth" class="custom-select d-block w-100" id="state" required="Selectionnez un mois" ngModel>
+            <option value="0">Mois</option>
+            <option value="1">jan</option>
+            <option value="2">fév</option>
+            <option value="3">mar</option>
+            <option value="4">avr</option>
+            <option value="5">mai</option>
+            <option value="6">jun</option>
+            <option value="7">juil</option>
+            <option value="8">aoû</option>
+            <option value="9">sep</option>
+            <option value="10">oct</option>
+            <option value="11">nov</option>
+            <option value="12">déc</option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="year">Année</label>
+          <input name="birthYear" type="number" class="form-control" id="year" value="2000" placeholder="YYYY" ngModel>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-lg btn-block" type="submit">CREER MON COMPTE</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="auth.isAuth" class="row already-auth">
+  <div class="col-xs-3 col-sm-4 col-md-4"></div>
+  <div class="col-xs-3 col-sm-4 col-md-4">
+    <h1 class="h3 mb-3 font-weight-normal">Vous etes connecté en tant que {{ auth.lastName }} {{ auth.firstName }}</h1>
+  </div>
+</div>

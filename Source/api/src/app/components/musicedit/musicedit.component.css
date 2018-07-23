@@ -1,0 +1,47 @@
+.player-container{
+  position: relative;
+  margin-bottom: 12px;
+  height: 220px;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #ffffff;
+}
+
+.player-image{
+  position: absolute;
+  height: 128px;
+  width: 128px;
+  top: 44px;
+  left: 26px;
+  background-size: 100% auto;
+}
+
+.waveform-container{
+  width: 460px;
+  position: absolute;
+  left: 220px;
+  bottom: 26px;
+}
+
+.player-btn{
+  position: absolute;
+  top: 27px;
+  color: #f50;
+  left: 193px;
+  font-size: 48px;
+}
+
+.sound-info{
+  position: absolute;
+  top: 34px;
+  color: #D3D3D3;
+  left: 250px;
+}
+
+.sound-artist{
+  color: #999;
+}
+
+.sound-name{
+  color: #333;
+}

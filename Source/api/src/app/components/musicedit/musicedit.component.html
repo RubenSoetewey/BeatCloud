@@ -1,0 +1,28 @@
+<div *ngIf="auth.isAuth" class="row">
+  <form #editForm="ngForm" (ngSubmit)="editMusic(editForm.value)">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12  col-md-12">
+        <label for="name">Nom </label>
+        <input name="name" type="text" class="form-control" id="name" placeholder="Dupont" value="{{music.name}}" [(ngModel)]="music.name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12  col-md-12">
+        <label for="name">Url de l'image </label>
+        <input name="imageUrl" type="text" class="form-control" id="imageUrl" placeholder="http://google.image.com/arbre.jpg" value="{{music.imageUrl}}" [(ngModel)]="music.imageUrl">
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Changer</button>
+  </form>
+</div>
+
+<div style="padding-top: 12px;" class="row">
+  <div class="col-md-12 mb-12">
+    <file-drop
+      headertext="Drop files here" (onFileDrop)="dropped($event)"
+      (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"
+      headertext="Changer l'image"
+      customstyle="uploader-container">
+    </file-drop>
+  </div>
+</div>

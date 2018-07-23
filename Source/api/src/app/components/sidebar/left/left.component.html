@@ -1,0 +1,74 @@
+<div class="left-sidebar">
+
+  <div class="button-container">
+    <div routerLinkActive="active-button" routerLink="/home" class="left-button main-button">
+      <i class="fab fa-soundcloud"></i>
+    </div>
+  </div>
+
+
+  <div *ngIf="!auth.isAuth" class="button-container">
+    <div class="left-button" data-target="#modalLogin" data-toggle="modal" data-target="#modalLogin">
+      <i class="fas fa-sign-in-alt"></i>
+    </div>
+    <div routerLinkActive="active-button" routerLink="/register" class="left-button">
+      <i class="fas fa-user-plus"></i>
+    </div>
+  </div>
+
+  <div *ngIf="auth.isAuth" class="button-container">
+    <div routerLinkActive="active-button" routerLink="/edit" class="left-button">
+      <i class="fas fa-users-cog"></i>
+    </div>
+
+    <div routerLinkActive="active-button" routerLink="/upload" class="left-button">
+      <i class="fas fa-file-upload"></i>
+    </div>
+
+    <div routerLinkActive="active-button" routerLink="/sounds" class="left-button">
+      <i class="fas fa-music"></i>
+    </div>
+
+    <div *ngIf="auth.rank >= 7" class="button-container">
+      <div routerLinkActive="active-button" routerLink="/admin"  class="left-button">
+        <i class="fas fa-tachometer-alt"></i>
+      </div>
+    </div>
+
+    <div (click)="logout()" class="left-button" id="logout-left-button">
+      <div style="text-align:center ">
+        <i class="fas fa-power-off"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="z-index: 99999;" class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLoginLabel">S'authentifier</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col md-3">
+          <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)"  class="form-signin">
+            <span style="color: red;" *ngIf="error.length">
+              {{ error }}
+            </span>
+            <label for="username" class="sr-only">Addresse email/ nom de compte</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Nom de compte" required autofocus ngModel>
+            <label for="inputPassword" class="sr-only">Mot de passe</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" required ngModel>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

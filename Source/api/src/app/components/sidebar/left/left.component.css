@@ -1,0 +1,33 @@
+.left-sidebar{
+  height: 100%;
+  width: var(--sidebar-size);
+  position: fixed;
+  left: 0px;
+  background-color: rgb(22,29,35);
+  z-index: 10;
+}
+
+.button-container{
+  width: 100%;
+}
+.left-button{
+  color: #ffffff;
+  font-size: 17px;
+  text-align: center;
+  height: var(--sidebar-size);
+  padding-top: 18px;
+}
+
+.main-button{
+  font-size: 27px;
+  padding-top: 14px;
+}
+
+.fade.show {
+  opacity: 1;
+  z-index: 99999 !important;
+}
+
+.active-button{
+  background-color: #f50;
+}

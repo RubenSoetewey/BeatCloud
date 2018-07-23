@@ -1,0 +1,87 @@
+<div *ngIf="auth.isAuth && auth.rank >= 7">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li (click)="loadUsers()" class="nav-item">
+      <a class="nav-link active" id="users" data-toggle="tab" href="#users-tab" role="tab" aria-controls="home" aria-selected="true">
+        Utilisateurs
+      </a>
+    </li>
+    <li (click)="loadMusics()" class="nav-item">
+      <a class="nav-link" id="musics" data-toggle="tab" href="#musics-tab" role="tab" aria-controls="profile" aria-selected="false">
+        Mes musiques
+      </a>
+    </li>
+    <li (click)="loadPlugins()" class="nav-item">
+      <a class="nav-link" id="plugins" data-toggle="tab" href="#plugins-tab" role="tab" aria-controls="profile" aria-selected="false">
+        Les plugins
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="users-tab" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <table class="table table-dark">
+            <thead>
+            <tr>
+              <th scope="col">Nom</th>
+              <th scope="col">Prénom</th>
+              <th scope="col">Nom d'artiste</th>
+              <th scope="col">Email</th>
+              <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users$ | async">
+              <th>{{user.lastName}}</th>
+              <td>{{user.firstName}}</td>
+              <td>{{user.artisName}}</td>
+              <td>{{user.email}}</td>
+              <td>
+                <button *ngIf="!user.banned" (click)="banUser(user)" type="button" class="btn btn-danger">Bannir</button>
+                <button *ngIf="user.banned" (click)="banUser(user)" type="button" class="btn btn-primary">Débannir</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="musics-tab" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12" *ngFor="let music of musics$">
+          <app-soundplayer [sound]="music"></app-soundplayer>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="plugins-tab" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <file-drop
+            headertext="Drop files here" (onFileDrop)="dropped($event)"
+            (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"
+            headertext="Faite glisser vos plugins"
+            customstyle="uploader-container">
+          </file-drop>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <table class="table table-dark">
+            <thead>
+            <tr>
+              <th scope="col">Nom</th>
+              <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plugin of plugins$ | async">
+              <th>{{plugin.name}}</th>
+              <th><button (click)="deletePlugin(plugin)" type="button" class="btn btn-danger">Supprimer</button></th>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

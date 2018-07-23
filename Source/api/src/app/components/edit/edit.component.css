@@ -1,0 +1,11 @@
+.errors-container{
+  padding-bottom: 8px;
+}
+
+.error {
+  color: red;
+}
+
+.already-auth{
+  padding-top: 30px;
+}

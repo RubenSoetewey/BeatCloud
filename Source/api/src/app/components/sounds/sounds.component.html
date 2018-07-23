@@ -1,0 +1,39 @@
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li (click)="loadSounds()" class="nav-item">
+    <a class="nav-link active" id="instu-tab" data-toggle="tab" href="#instru" role="tab" aria-controls="home" aria-selected="true">
+      Mes instruments
+    </a>
+  </li>
+  <li (click)="loadMusics()" class="nav-item">
+    <a class="nav-link" id="music-tab" data-toggle="tab" href="#music" role="tab" aria-controls="profile" aria-selected="false">
+      Mes musiques
+    </a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="instru" role="tabpanel" aria-labelledby="home-tab">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12" *ngFor="let sound of sounds">
+        <app-soundplayer [sound]="sound"></app-soundplayer>
+      </div>
+      <div *ngIf="!sounds.length" class="col-xs-12 col-sm-12 col-md-12">
+        <div class="empty">
+          <p>Aucun instrument n'a été déposé</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="music" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12" *ngFor="let music of musics">
+        <app-soundplayer [sound]="music"></app-soundplayer>
+      </div>
+      <div *ngIf="!musics.length" class="col-xs-12 col-sm-12 col-md-12">
+        <div class="empty">
+          <p>Aucune musique instrument n'a été déposé</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
