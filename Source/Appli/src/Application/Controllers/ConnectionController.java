@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.Optional;
+import Application.Util.ApiRequest;
+import org.json.JSONObject;
 
 public class ConnectionController extends AnchorPane{
     @FXML
@@ -32,11 +34,18 @@ public class ConnectionController extends AnchorPane{
 
     @FXML
     public void openApplication(MouseEvent onMouseClicked) throws Exception {
-        if (connectLogin.getText().length() != 0 && connectPassword.getText().length() != 0) {
+        String login  = connectLogin.getText();
+        String password  = connectPassword.getText();
+        JSONObject res = new JSONObject(ApiRequest.auth(login, password));
+
+        if (login.length() != 0 && password.length() != 0 && res.has("token")) {
+            String token = res.get("token").toString();
+
             FXMLLoader loaderApplication = new FXMLLoader();
             loaderApplication.setLocation(Main.class.getResource("Fxml/application.fxml"));
             BorderPane rootApplication = (BorderPane) loaderApplication.load();
             ApplicationController applicationController = loaderApplication.getController();
+            applicationController.token = token;
             applicationController.initPlugin();
             Stage applicationStage = new Stage(StageStyle.DECORATED);
             applicationStage.setTitle("BeatCloud");

@@ -27,6 +27,9 @@ import Application.Util.JarLoader;
 import static Application.Util.SoundMixer.concatWav;
 
 public class ApplicationController extends BorderPane {
+
+    public String token = "";
+
     @FXML
     Stage primaryStage;
     @FXML
