@@ -42,8 +42,7 @@ public class JarLoader {
 
     private void loadPlugin(String pathToJar) {
         try {
-            
-            Double[] sound = new Double[]{0.5,0.7,0.8};
+
             JarFile jarFile = new JarFile(pathToJar);
             Enumeration<JarEntry> e = jarFile.entries();
 
@@ -59,9 +58,7 @@ public class JarLoader {
                 String className = je.getName().substring(0, je.getName().length() - 6);
                 className = className.replace('/', '.');
                 Class c = cl.loadClass(className);
-                Method method = c.getMethod("exec", int[].class);
-               
-                //Object res = method.invoke(null, new Object[]{"lol"});
+                Method method = c.getMethod("exec", ArrayList.class);
                 this.methods.put(className, method);
                 this.pluginsKeys.add(className);
                 System.out.println(className);
@@ -70,7 +67,7 @@ public class JarLoader {
             System.out.println(ex);
         }
     }
-    
+
     public void downloadPlugin(String urlPlugin, String fileName){
         try{
             URL url = new URL(urlPlugin);
@@ -79,14 +76,14 @@ public class JarLoader {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
             fos.close();
             rbc.close();
-            
+
         }catch(Exception ex){
             System.out.println(ex);
         }
     }
     private void delete(File file) throws IOException {
-       for (File childFile : file.listFiles()) {
-           System.out.println(childFile.toString());
+        for (File childFile : file.listFiles()) {
+            System.out.println(childFile.toString());
             if (childFile.isDirectory()) {
                 delete(childFile);
             } else {
@@ -99,24 +96,24 @@ public class JarLoader {
             throw new IOException();
         }
     }
-    
+
     public void downloadPlugins(){
         String pluginUrl = apiUrl + "/public/plugins";
         try{
             String plugins = new Scanner(new URL(pluginUrl).openStream(), "UTF-8").useDelimiter("\\A").next();
             JSONArray jsonarray = new JSONArray(plugins);
-            
+
             File pluginDirectory = new File("./plugins");
             if(pluginDirectory.isDirectory() && pluginDirectory.exists()){
                 this.delete(pluginDirectory);
             }
-            
+
             pluginDirectory.mkdir();
             for (int i = 0; i < jsonarray.length(); i++) {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
                 String downloadUrl = jsonobject.getString("downloadUrl");
                 String pluginName = jsonobject.getString("name");
-                
+
                 System.out.println(downloadUrl);
                 downloadPlugin(downloadUrl, "./plugins/" + pluginName);
             }
@@ -136,28 +133,31 @@ public class JarLoader {
             }
         }
     }
-    
-    public Object execPlugin(String pluginName, int[] param){
+
+    public Object execPlugin(String pluginName, ArrayList<String> params){
         try{
             Method method = this.methods.get(pluginName);
-            return method.invoke(null, new Object[]{param});
+            return method.invoke(null, new Object[]{params});
         } catch(Exception ex){
             System.out.println(ex);
             return null;
         }
     }
-    
+
     public static void main(String[] args) {
         JarLoader jarLoader = new JarLoader();
         jarLoader.downloadPlugins();
         jarLoader.loadPlugins();
-        int[] myIntArray = new int[]{1,2,3};
+        String param = "test";
+
+        ArrayList<String> params = new ArrayList<String>();
+        params.add("token");
+        params.add("filename");
+
         for (String key : jarLoader.pluginsKeys) {
             System.out.println(key);
-            myIntArray = (int[])jarLoader.execPlugin(key, myIntArray);
-            for(int val : myIntArray){
-                System.out.println(val);
-            }
+            param = jarLoader.execPlugin(key, params).toString();
+            System.out.println(param);
         }
     }
 
