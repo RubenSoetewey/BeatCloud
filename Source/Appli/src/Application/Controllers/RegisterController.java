@@ -1,6 +1,7 @@
 package Application.Controllers;
 
 import Application.Main;
+import Application.Util.ApiRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.json.JSONObject;
 
 public class RegisterController extends AnchorPane{
     @FXML
@@ -89,18 +91,38 @@ public class RegisterController extends AnchorPane{
             FXMLLoader loaderApplication = new FXMLLoader();
             loaderApplication.setLocation(Main.class.getResource("Fxml/application.fxml"));
             BorderPane rootApplication = (BorderPane) loaderApplication.load();
-            ApplicationController applicationController = loaderApplication.getController();
-            applicationController.initPlugin();
 
-            Stage applicationStage = new Stage(StageStyle.DECORATED);
-            applicationStage.setTitle("BeatCloud");
-            applicationStage.setResizable(false);
-            applicationStage.getIcons().add(new Image(Main.class.getResourceAsStream("Photo/Logo.png")));
-            applicationStage.setScene(new Scene(rootApplication, 700, 400));
-            applicationStage.show();
+            // register(String username, String password,String confirmPassword,
+            //          String email, String phone, String firstName, String lastName)
+            JSONObject res = new JSONObject(ApiRequest.register(registerLogin.getText(), registerPassword.getText(), confirmPassword.getText(),
+                    email.getText(), phone.getText(), firstname.getText(),surname.getText()));
 
-            registerStage = (Stage) registerAnnulation.getScene().getWindow();
-            registerStage.close();
+            if(res.has("token")){
+                ApplicationController applicationController = loaderApplication.getController();
+                applicationController.token = res.get("token").toString();
+                applicationController.initPlugin();
+
+                Stage applicationStage = new Stage(StageStyle.DECORATED);
+                applicationStage.setTitle("BeatCloud");
+                applicationStage.setResizable(false);
+                applicationStage.getIcons().add(new Image(Main.class.getResourceAsStream("Photo/Logo.png")));
+                applicationStage.setScene(new Scene(rootApplication, 700, 400));
+                applicationStage.show();
+
+                registerStage = (Stage) registerAnnulation.getScene().getWindow();
+                registerStage.close();
+            }else{
+                Alert surnameAlert = new Alert(Alert.AlertType.ERROR);
+                surnameAlert.setTitle("Attention");
+                Stage stage = (Stage) surnameAlert.getDialogPane().getScene().getWindow();
+                stage.getIcons().add(new Image(Main.class.getResourceAsStream("Photo/attention.png")));
+                if(res.has("msg")){
+                    surnameAlert.setContentText(res.get("msg").toString());
+                }else{
+                    surnameAlert.setContentText("Merci de vérifier que tous les champs sont corrects et que vous n'avez pas déja un compte.");
+                }
+                surnameAlert.showAndWait();
+            }
         }
         else {
             if (verifyPassword(registerPassword.getText()) == false && verifyPassword(confirmPassword.getText()) == false
