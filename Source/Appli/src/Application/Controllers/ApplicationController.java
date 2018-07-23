@@ -5,16 +5,11 @@ import javafx.fxml.FXML;
 import Application.Util.BCButton;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-<<<<<<< HEAD
-=======
-import javafx.scene.control.MenuItem;
->>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.MediaPlayer;
@@ -23,210 +18,18 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
-
-=======
-import javafx.util.Duration;
-import javafx.application.Platform;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.scene.media.MediaPlayer.Status;
-import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.io.IOException;
->>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
+
 import static Application.Util.SoundMixer.concatWav;
+
 public class ApplicationController extends BorderPane {
     @FXML
     Stage primaryStage;
-<<<<<<< HEAD
     @FXML
     Pane musicPane;
     @FXML
-=======
-
-    /////////////////////////////////////////////////Files///////////////////////////////////////
-    @FXML
-    MenuItem newFile;
-
-    @FXML
-    public void createNewFile(ActionEvent event) {
-        FileChooser fileChoosed = new FileChooser();
-        fileChoosed.setTitle("Create new file");
-        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
-        fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("WAV Files", "*.wav"));
-        newFile.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
-        File selectedFile = fileChoosed.showOpenDialog(primaryStage);
-        if (selectedFile != null) {
-            System.out.println(selectedFile);
-        }
-        event.consume();
-    }
-
-    @FXML
-    MenuItem openFile;
-
-    @FXML
-    public void openFile(ActionEvent event) {
-        FileChooser fileChoosed = new FileChooser();
-        fileChoosed.setTitle("Open file");
-        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
-        fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Audio Files", "*.mp3"));
-        openFile.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN));
-        File selectedFile = fileChoosed.showOpenDialog(primaryStage);
-        if (selectedFile != null) {
-            System.out.println(selectedFile);
-        }
-        event.consume();
-    }
-
-    @FXML
-    MenuItem saveFile;
-
-    @FXML
-    public void saveFile(ActionEvent event) {
-        FileChooser fileChoosed = new FileChooser();
-        fileChoosed.setTitle("Save File");
-        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
-        fileChoosed.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Audio Files", "*.mp3"));
-        saveFile.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN)); //Crée une erreur NullPointeur
-        File selectedFile = fileChoosed.showSaveDialog(primaryStage);
-        if (selectedFile != null) {
-            System.out.println(selectedFile);
-        }
-        event.consume();
-    }
-    @FXML
-    MediaView mainView;
-    @FXML
-    MediaPlayer mainPlayer;
-    @FXML
-    Image play;
-    @FXML
-    Duration duration;
-    @FXML
-    Slider timeSlider;
-    @FXML
-    Label playTime;
-    @FXML
-    Slider volumeSlider;
-    @FXML
-    Pane mvPane;
-    @FXML
-    Pane musicPane;
-    @FXML
-    HBox mediaBar;
-    @FXML
-    Button playButton;
-    @FXML
-    Button stopButton;
-    final boolean repeat = false;
-    boolean stopRequested = false;
-    boolean atEndOfMedia = false;
-    private FadeTransition ft;
-    private static String formatTime(Duration elapsed, Duration duration) {
-        int intElapsed = (int) Math.floor(elapsed.toSeconds());
-        int elapsedHours = intElapsed / (60 * 60);
-        if (elapsedHours > 0) {
-            intElapsed -= elapsedHours * 60 * 60;
-        }
-        int elapsedMinutes = intElapsed / 60;
-        int elapsedSeconds = intElapsed - elapsedHours * 60 * 60 - elapsedMinutes * 60;
-
-        if (duration.greaterThan(Duration.ZERO)) {
-            int intDuration = (int) Math.floor(duration.toSeconds());
-            int durationHours = intDuration / (60 * 60);
-            if (durationHours > 0) {
-                intDuration -= durationHours * 60 * 60;
-            }
-            int durationMinutes = intDuration / 60;
-            int durationSeconds = intDuration - durationHours * 60 * 60 - durationMinutes * 60;
-            if (durationHours > 0) {
-                return String.format("%d:%02d:%02d/%d:%02d:%02d", elapsedHours, elapsedMinutes, elapsedSeconds, durationHours, durationMinutes, durationSeconds);
-            } else {
-                return String.format("%02d:%02d/%02d:%02d", elapsedMinutes, elapsedSeconds, durationMinutes, durationSeconds);
-            }
-        } else {
-            if (elapsedHours > 0) {
-                return String.format("%d:%02d:%02d", elapsedHours, elapsedMinutes, elapsedSeconds);
-            } else {
-                return String.format("%02d:%02d", elapsedMinutes, elapsedSeconds);
-            }
-        }
-    }
-
-    protected void updateValues() {
-        if (playTime != null && timeSlider != null && volumeSlider != null) {
-            Platform.runLater(new Runnable() {
-                public void run() {
-                    Duration currentTime = mainPlayer.getCurrentTime();
-                    playTime.setText(formatTime(currentTime, duration));
-                    timeSlider.setDisable(duration.isUnknown());
-                    if (!timeSlider.isDisabled()
-                            && duration.greaterThan(Duration.ZERO)
-                            && !timeSlider.isValueChanging()) {
-                        timeSlider.setValue(currentTime.divide(duration).toMillis() * 100.0);
-                    }
-                    if (!volumeSlider.isValueChanging()) {
-                        volumeSlider.setValue((int) Math.round(mainPlayer.getVolume() * 100));
-                    }
-                }
-            });
-        }
-    }
-
-    @FXML
-    public void handlePlay(ActionEvent onMouseClicked) {
-        Status status = mainPlayer.getStatus();
-        if (status == Status.UNKNOWN || status == Status.HALTED) {
-            return;
-        }
-        if (status == Status.PAUSED || status == Status.READY || status == Status.STOPPED) {
-            // rewind the movie if we're sitting at the end
-            if (atEndOfMedia) {
-                mainPlayer.seek(mainPlayer.getStartTime());
-                atEndOfMedia = false;
-            }
-            mainPlayer.play();
-
-        } else {
-            mainPlayer.pause();
-        }
-        onMouseClicked.consume();
-    }
-
-    @FXML
-    public void handleStop(ActionEvent onMouseClicked) {
-        Status status = mainPlayer.getStatus();
-        if (status == Status.UNKNOWN || status == Status.HALTED) {
-            // don't do anything in these states
-            mainPlayer.play();
-            return;
-        }
-        if (status == Status.STOPPED) {
-            // rewind the movie if we're sitting at the end
-            if (atEndOfMedia) {
-                mainPlayer.seek(mainPlayer.getStartTime());
-                atEndOfMedia = false;
-            }
-            mainPlayer.play();
-        } else {
-            mainPlayer.stop();
-            if (playButton.isPressed()) {
-                mainPlayer.play();
-            }
-        }
-        onMouseClicked.consume();
-    }
-
-    @FXML
->>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
     HBox dropZone;
     @FXML
     Button validMusic;
@@ -283,16 +86,6 @@ public class ApplicationController extends BorderPane {
     Button deleteSound;
     @FXML
     HBox soundZone;
-
-<<<<<<< HEAD
-    @FXML
-    public void listenSound(MouseEvent onClicked) {
-        MediaPlayer player = new MediaPlayer(new Media(((BCButton)onClicked.getSource()).associatedFile));
-        player.play();
-=======
-    @FXML
-    Media guitarMedia;
-
     @FXML
     public void listenSound(MouseEvent onClicked) {
 
@@ -305,32 +98,22 @@ public class ApplicationController extends BorderPane {
             b.setOnMouseClicked(this::listenSound);
             dropZone.getChildren().add(b);
         }
->>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
     }
 
     @FXML
     public void deleteSound(MouseEvent onClicked) {
-<<<<<<< HEAD
         dropZone.getChildren().remove(0);
-=======
         System.out.println("kikou");
         dropZone.getChildren().remove(0); //marche uniquement pour le premier pour l'instant
->>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
     }
 
     @FXML
     public void onDragDetected(MouseEvent onDragDetected) {
         /* drag was detected, start drag-and-drop gesture*/
         ClipboardContent content = new ClipboardContent();
-<<<<<<< HEAD
-       // content.putString(pianoTest.getText());
-=======
-
->>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
         content.putString(((BCButton)onDragDetected.getSource()).getText());
         Dragboard db = ((BCButton)onDragDetected.getSource()).startDragAndDrop(TransferMode.ANY);
         db.setContent(content);
-
         onDragDetected.consume();
     }
 

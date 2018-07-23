@@ -8,49 +8,6 @@ import jm.util.*;
 import javax.sound.sampled.*;
 
 public class SoundMixer {
-
-<<<<<<< HEAD
-
-    /*public static void concatWav(String resultName, Vector<String> files) throws FileNotFoundException, IOException{
-        //FileInputStream fistream1 = new FileInputStream(wavFile1);  // first source file
-        //FileInputStream fistream2 = new FileInputStream(wavFile2);//second source file
-        Vector<FileInputStream> streams = new Vector<>();
-        for(String file:files){
-            streams.add(new FileInputStream(file));
-        }
-        SequenceInputStream sistream = new SequenceInputStream(streams.elements());
-        FileOutputStream fostream = new FileOutputStream(resultName);//destinationfile
-        int temp;
-        while( ( temp = sistream.read() ) != -1)
-        {
-            // System.out.print( (char) temp ); // to print at DOS prompt
-            fostream.write(temp);   // to write to file
-        }
-        fostream.close();
-        sistream.close();
-    }*/
-    /*public static void concatWav(String resultName, Vector<String> files) throws FileNotFoundException, IOException {
-        Vector<FileInputStream> streams = new Vector<>();
-        for (String file : files) {
-            try {
-                streams.add(new FileInputStream(file));
-            } catch (Exception e) {
-
-            }
-        }
-        SequenceInputStream sistream = new SequenceInputStream(streams.elements());
-        FileOutputStream fostream = new FileOutputStream(resultName);//destinationfile
-        int temp;
-        while ((temp = sistream.read()) != -1) {
-            // System.out.print( (char) temp ); // to print at DOS prompt
-            fostream.write(temp);   // to write to file
-        }
-        fostream.close();
-        sistream.close();
-    }*/
-
-=======
->>>>>>> d4a1d968e06b523491f120a9bf16de361ddfbe86
     public static void concatWav(String destinationFileName, List<String> sourceFilesList) throws FileNotFoundException, IOException{
         AudioInputStream audioInputStream = null;
         List<AudioInputStream> audioInputStreamList = null;

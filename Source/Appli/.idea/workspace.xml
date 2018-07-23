@@ -74,14 +74,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ApplicationController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ApplicationController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="84">
+              <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SoundMixer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
               <folding>
-                <element signature="e#2777#2778#0" expanded="true" />
-                <element signature="e#2825#2826#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,8 +102,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="924">
+              <caret line="44" column="24" lean-forward="false" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -112,7 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>-fx-f</find>
       <find>Music</find>
       <find>piano</find>
       <find>04B431</find>
@@ -141,6 +149,7 @@
       <find>import</find>
       <find>main</find>
       <find>validMus</find>
+      <find>mv</find>
       <find>MediaPlayer</find>
     </findStrings>
   </component>
@@ -175,11 +184,11 @@
         <option value="$PROJECT_DIR$/src/Application/Util/BCButton.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/Application/Util/JarLoader.java" />
-        <option value="$PROJECT_DIR$/src/Application/Util/SoundMixer.java" />
         <option value="$PROJECT_DIR$/src/Application/Controllers/RegisterController.java" />
         <option value="$PROJECT_DIR$/src/Application/Controllers/ConnectionController.java" />
-        <option value="$PROJECT_DIR$/src/Application/Fxml/application.fxml" />
         <option value="$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java" />
+        <option value="$PROJECT_DIR$/src/Application/Fxml/application.fxml" />
+        <option value="$PROJECT_DIR$/src/Application/Util/SoundMixer.java" />
       </list>
     </option>
   </component>
@@ -479,12 +488,12 @@
       <workItem from="1532175659685" duration="3607000" />
       <workItem from="1532179693433" duration="17404000" />
       <workItem from="1532198608570" duration="21501000" />
-      <workItem from="1532287771530" duration="15840000" />
+      <workItem from="1532287771530" duration="16719000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272112000" />
+    <option name="totallyTimeSpent" value="272991000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -572,32 +581,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java</url>
-          <line>16</line>
-          <properties />
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="89" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java</url>
-          <line>31</line>
-          <properties />
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="92" />
     </breakpoint-manager>
     <watches-manager>
@@ -897,34 +880,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-472">
-          <caret line="89" column="41" lean-forward="true" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Application/Fxml/application.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="924">
+          <caret line="44" column="24" lean-forward="false" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Application/Controllers/ApplicationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="84">
+          <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Application/Util/SoundMixer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
           <folding>
-            <element signature="e#2777#2778#0" expanded="true" />
-            <element signature="e#2825#2826#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
