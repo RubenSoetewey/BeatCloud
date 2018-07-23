@@ -36,7 +36,7 @@ public class JarLoader {
     /**
      * @param args the command line arguments
      */
-    public static final String apiUrl = "http://localhost:8080";
+    public static final String apiUrl = "https://beatcloud.herokuapp.com";
     public Hashtable<String,Method> methods = new Hashtable<String,Method>();
     public List<String> pluginsKeys = new ArrayList<String>();
 
