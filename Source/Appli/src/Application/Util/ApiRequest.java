@@ -17,7 +17,10 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
 public class ApiRequest {
     public static final String apiUrl = "https://beatcloud.herokuapp.com";
 
@@ -43,6 +46,23 @@ public class ApiRequest {
         arguments.add(new BasicNameValuePair("password", password));
 
         return ApiRequest.sendPost(apiUrl + "/account/auth", arguments);
+    }
+
+    public static String register(String username, String password,String confirmPassword,
+                                  String email, String phone, String firstName, String lastName){
+
+        List<NameValuePair> arguments = new ArrayList<>();
+        arguments.add(new BasicNameValuePair("username", username));
+        arguments.add(new BasicNameValuePair("password", password));
+        arguments.add(new BasicNameValuePair("confirmPassword", confirmPassword));
+        arguments.add(new BasicNameValuePair("birthDate", "0"));
+        arguments.add(new BasicNameValuePair("email", email));
+        arguments.add(new BasicNameValuePair("phone", phone));
+        arguments.add(new BasicNameValuePair("artistName", ""));
+        arguments.add(new BasicNameValuePair("firstName", firstName));
+        arguments.add(new BasicNameValuePair("lastName", lastName));
+
+        return ApiRequest.sendPost(apiUrl + "/account/register", arguments);
     }
 
     public static void main(String[] args) {

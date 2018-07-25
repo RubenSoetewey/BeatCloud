@@ -18,6 +18,11 @@ import java.util.Optional;
 import Application.Util.ApiRequest;
 import org.json.JSONObject;
 
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
+
 public class ConnectionController extends AnchorPane{
     @FXML
     Stage connectionStage;

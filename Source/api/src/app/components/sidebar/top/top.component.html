@@ -1,0 +1,20 @@
+<div class="top-sidebar">
+  <div class="sidebar-container">
+
+    <div class="sidebar-search">
+      <form>
+        <i class="fas fa-search"></i>
+        <input name="term" [(ngModel)]="term" (focus)="search()" (keyup)="keyup()" class="search-input roboto-light" type="search" placeholder="Rechercher une musique" aria-label="Search">
+      </form>
+    </div>
+    <div class="sidebar-user-profile">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link">
+            {{auth.artistName}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

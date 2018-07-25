@@ -1,0 +1,32 @@
+<div *ngIf="auth.isAuth" class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="py-5 text-center">
+      <h2>Editer mes informations</h2>
+    </div>
+    <h4 class="mb-3">Informations personnelle</h4>
+    <form #editForm="ngForm" (ngSubmit)="editAccount(editForm.value)" >
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">Nom </label>
+          <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Dupont" value="" [(ngModel)]="user.lastName">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Prénom</label>
+          <input name="firstName" type="text" class="form-control" id="firstName" value="" placeholder="Jean" [(ngModel)]="user.firstName">
+        </div>
+      </div>
+      <hr class="mb-4">
+      <div class="mb-3">
+        <label for="artistName">Nom d'artiste <span class="text-muted"></span></label>
+        <input name="artistName" type="text" class="form-control" id="artistName" placeholder="DJ ESGI" [(ngModel)]="user.artistName">
+      </div>
+      <div class="mb-3">
+        <label for="phone">Numéro de téléphone : </label>
+        <input name="phone" type="text" class="form-control" id="phone" placeholder="+33635000007" [(ngModel)]="user.phone">
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Editer</button>
+    </form>
+  </div>
+</div>

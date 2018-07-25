@@ -1,10 +1,12 @@
 package Application.Controllers;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import Application.Util.BCButton;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
@@ -26,9 +28,16 @@ import Application.Util.JarLoader;
 
 import static Application.Util.SoundMixer.concatWav;
 
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
+
 public class ApplicationController extends BorderPane {
 
     public String token = "";
+    @FXML
+    ChoiceBox pluginId;
 
     @FXML
     Stage primaryStage;
@@ -61,11 +70,23 @@ public class ApplicationController extends BorderPane {
             String nb = dateFormat.format(date);
             String filename = "Output"+nb+".wav";
             concatWav(filename,allFiles);
-             File file=new File(filename);
-             String source=file.toURI().toString();
+            File file=new File(filename);
+            String source=file.toURI().toString();
             Media media = new Media(source);
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
+            try {
+                String pluginKey = pluginId.getValue().toString();
+                ArrayList<String> params = new ArrayList<String>();
+
+                params.add(this.token);
+                params.add(filename);
+
+                if(pluginKey.length() > 0){
+                    System.out.println(this.jarLoader.execPlugin(pluginKey, params));
+                }
+            }
+            catch(Exception e){}
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,7 +95,7 @@ public class ApplicationController extends BorderPane {
     public void importFile(ActionEvent actionEvent) {
         FileChooser fileChoosed = new FileChooser();
         fileChoosed.setTitle("Open file");
-        fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
+        //fileChoosed.setInitialDirectory(new File("./src/Application/Music"));
         fileChoosed.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Audio Files", "*.wav"));
         File selectedFile = fileChoosed.showOpenDialog(primaryStage);
         if (selectedFile != null) {
@@ -108,8 +129,6 @@ public class ApplicationController extends BorderPane {
     @FXML
     public void deleteSound(MouseEvent onClicked) {
         dropZone.getChildren().remove(0);
-        System.out.println("kikou");
-        dropZone.getChildren().remove(0); //marche uniquement pour le premier pour l'instant
     }
 
     @FXML
@@ -178,5 +197,11 @@ public class ApplicationController extends BorderPane {
     public void initPlugin(){
         this.jarLoader.downloadPlugins();
         this.jarLoader.loadPlugins();
+        ObservableList<String> options = FXCollections.observableArrayList();
+
+        for( String key : this.jarLoader.pluginsKeys){
+            options.add(key);
+        }
+        this.pluginId.setItems(options);
     }
 }

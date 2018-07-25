@@ -1,0 +1,12 @@
+.item-window{
+  width: 100%;
+}
+.item-artist{
+  font-size: 14px;
+}
+.item-image{
+  background-size: 100% 100%;
+  width: 171px;
+  height: 245px;
+  border-radius: 6px;
+}

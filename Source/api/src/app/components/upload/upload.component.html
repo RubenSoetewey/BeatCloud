@@ -1,0 +1,12 @@
+<div *ngIf="auth.isAuth" class="row">
+
+  <div class="col col-xs-12 col-sm-12 col-md-12">
+    <file-drop
+      headertext="Drop files here" (onFileDrop)="dropped($event)"
+      (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"
+      headertext="Faite glisser vos instruments"
+      customstyle="uploader-container">
+    </file-drop>
+  </div>
+</div>
+

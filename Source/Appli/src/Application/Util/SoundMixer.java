@@ -7,6 +7,10 @@ import jm.util.*;
 
 import javax.sound.sampled.*;
 
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
 public class SoundMixer {
     public static void concatWav(String destinationFileName, List<String> sourceFilesList) throws FileNotFoundException, IOException{
         AudioInputStream audioInputStream = null;

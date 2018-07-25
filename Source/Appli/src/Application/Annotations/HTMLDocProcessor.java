@@ -15,7 +15,7 @@ import javax.lang.model.element.TypeElement;
 
 /**
  *
- * @author rsoetewey
+ * @author rsoetewey, melegbe, ppevzner
  */
 @SupportedAnnotationTypes(value = {
         "annotations.HTMLDoc"

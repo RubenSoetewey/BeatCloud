@@ -1,0 +1,11 @@
+.empty{
+  margin-bottom: 12px;
+  height: 220px;
+  width: 100%;
+  background-color: #ffffff;
+}
+.empty > p{
+  text-align: center;
+  font-size: 24px;
+  padding-top: 89px;
+}
