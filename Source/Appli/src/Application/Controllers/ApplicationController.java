@@ -53,7 +53,7 @@ public class ApplicationController extends BorderPane {
     private void validMusicExit (MouseEvent onMouseExited) { validMusic.setStyle("-fx-background-color: darkturquoise"); }
     JarLoader jarLoader = new JarLoader();
     @FXML
-    private void validMusicCliqued (MouseEvent onMouseCliqued){
+    private void validMusicClicked (MouseEvent onMouseClicked){
         List<String> allFiles = new ArrayList<>();
         for (Node n: ( dropZone.getChildren())) {
             try{
