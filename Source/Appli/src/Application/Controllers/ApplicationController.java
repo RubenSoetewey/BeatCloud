@@ -28,6 +28,11 @@ import Application.Util.JarLoader;
 
 import static Application.Util.SoundMixer.concatWav;
 
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
+
 public class ApplicationController extends BorderPane {
 
     public String token = "";
@@ -65,8 +70,8 @@ public class ApplicationController extends BorderPane {
             String nb = dateFormat.format(date);
             String filename = "Output"+nb+".wav";
             concatWav(filename,allFiles);
-             File file=new File(filename);
-             String source=file.toURI().toString();
+            File file=new File(filename);
+            String source=file.toURI().toString();
             Media media = new Media(source);
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
@@ -124,8 +129,6 @@ public class ApplicationController extends BorderPane {
     @FXML
     public void deleteSound(MouseEvent onClicked) {
         dropZone.getChildren().remove(0);
-        System.out.println("kikou");
-        dropZone.getChildren().remove(0); //marche uniquement pour le premier pour l'instant
     }
 
     @FXML

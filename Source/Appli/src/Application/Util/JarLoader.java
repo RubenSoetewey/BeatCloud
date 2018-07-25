@@ -29,8 +29,9 @@ import java.nio.channels.ReadableByteChannel;
 
 /**
  *
- * @author Max
+ * @author rsoetewey, melegbe, ppevzner
  */
+
 public class JarLoader {
 
     /**

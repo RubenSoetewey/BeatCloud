@@ -2,6 +2,10 @@ package Application.Util;
 
 import javafx.scene.control.Button;
 
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
 public class BCButton extends Button {
     public String associatedFile;
     public String associatedFileURL;

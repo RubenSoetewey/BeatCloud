@@ -22,6 +22,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
 
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
 public class RegisterController extends AnchorPane{
     @FXML
     Stage registerStage;

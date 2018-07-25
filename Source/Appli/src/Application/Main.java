@@ -12,6 +12,10 @@ import javafx.stage.StageStyle;
 
 import java.net.URL;
 
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {

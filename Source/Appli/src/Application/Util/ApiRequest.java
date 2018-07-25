@@ -17,7 +17,10 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-
+/**
+ *
+ * @author rsoetewey, melegbe, ppevzner
+ */
 public class ApiRequest {
     public static final String apiUrl = "https://beatcloud.herokuapp.com";
 
